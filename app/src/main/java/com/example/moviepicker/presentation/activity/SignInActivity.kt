@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.moviepicker.R
 import com.example.moviepicker.data.remote.MoviePickerAPI
@@ -22,9 +21,14 @@ class SignInActivity : AppCompatActivity() {
 
         val remoteDataSource = RemoteDataSource(MoviePickerAPI.createAPI())
         val mediator = UserMediator(remoteDataSource)
+        val sharedPreferences =
+            this.getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE)
 
         val loginViewModel =
-            ViewModelProvider(this, SignInViewModelFactory(FetchCredentialsUseCase(mediator))).get(
+            ViewModelProvider(
+                this,
+                SignInViewModelFactory(FetchCredentialsUseCase(mediator), sharedPreferences)
+            ).get(
                 SignInViewModel::class.java
             )
 
@@ -50,6 +54,9 @@ class SignInActivity : AppCompatActivity() {
         loginViewModel.navigationLiveData.observe(this, { myClass ->
             myClass?.let {
                 startActivity(Intent(this, myClass))
+                if (myClass == MainActivity::class.java) {
+                    finish()
+                }
                 loginViewModel.navigationLiveData.value = null
             }
         })

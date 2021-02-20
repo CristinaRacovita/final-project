@@ -14,4 +14,6 @@
     <string name="already_exists">This account already exists!</string>
     <string name="new_user_successfully">Account created successfully!</string>
     <string name="completed">All fields should be completed!</string>
+    <string name="preference_file_key">authenticate</string>
+    <string name="log_out">Log Out</string>
 </resources>

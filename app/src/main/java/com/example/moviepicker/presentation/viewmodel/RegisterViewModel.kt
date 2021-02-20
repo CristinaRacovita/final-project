@@ -1,5 +1,6 @@
 package com.example.moviepicker.presentation.viewmodel
 
+import android.content.SharedPreferences
 import android.view.View
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableField
@@ -11,10 +12,13 @@ import com.example.moviepicker.domain.useCase.AddUserUseCase
 import com.example.moviepicker.domain.useCase.FetchCredentialsUseCase
 import com.example.moviepicker.presentation.activity.MainActivity
 import com.example.moviepicker.presentation.activity.SignInActivity
+import java.math.BigInteger
+import java.security.MessageDigest
 
 class RegisterViewModel(
     private val addUserUseCase: AddUserUseCase,
-    fetchCredentialsUseCase: FetchCredentialsUseCase
+    fetchCredentialsUseCase: FetchCredentialsUseCase,
+    private val sharedPreferences: SharedPreferences
 ) : ViewModel() {
 
     var liveEmail: ObservableField<String> = ObservableField()
@@ -37,18 +41,27 @@ class RegisterViewModel(
         }
     }
 
+    companion object {
+        val auth_tag = "auth"
+    }
+
     fun addNewUser(view: View) {
         if (!livePassword.get().isNullOrEmpty() && !liveEmail.get().isNullOrEmpty()) {
             if (!existsAlready(UserItem(liveEmail.get()!!, livePassword.get()!!))) {
+                sharedPreferences.edit().putBoolean(auth_tag, true).apply()
+                val md = MessageDigest.getInstance("MD5")
+                val md5Password =
+                    BigInteger(1, md.digest(livePassword.get()!!.toByteArray())).toString(16)
+                        .padStart(32, '0')
                 addUserUseCase.addUser(
                     credentials.size,
-                    UserItem(liveEmail.get()!!, livePassword.get()!!)
+                    UserItem(liveEmail.get()!!, md5Password)
                 )
                 navigationLiveData.value = MainActivity::class.java
             } else {
                 status.value = true
             }
-        }else{
+        } else {
             empty.value = true
         }
     }

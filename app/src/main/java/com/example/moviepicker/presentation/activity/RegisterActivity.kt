@@ -21,13 +21,16 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val remoteDataSource = RemoteDataSource(MoviePickerAPI.createAPI())
         val mediator = UserMediator(remoteDataSource)
+        val sharedPreferences =
+            this.getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE)
 
         val registerViewModel =
             ViewModelProvider(
                 this,
                 RegisterViewModelFactory(
                     FetchCredentialsUseCase(mediator),
-                    AddUserUseCase(mediator)
+                    AddUserUseCase(mediator),
+                    sharedPreferences
                 )
             ).get(
                 RegisterViewModel::class.java
@@ -54,11 +57,16 @@ class RegisterActivity : AppCompatActivity() {
 
         registerViewModel.navigationLiveData.observe(this, { myClass ->
             myClass?.let {
-                if (myClass == MainActivity::class.java) {
-                    Toast.makeText(this, getString(R.string.new_user_successfully), Toast.LENGTH_LONG)
-                        .show()
-                }
                 startActivity(Intent(this, myClass))
+                if (myClass == MainActivity::class.java) {
+                    Toast.makeText(
+                        this,
+                        getString(R.string.new_user_successfully),
+                        Toast.LENGTH_LONG
+                    )
+                        .show()
+                    finish()
+                }
                 registerViewModel.navigationLiveData.value = null
             }
         })
