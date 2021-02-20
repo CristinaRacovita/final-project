@@ -1,7 +1,8 @@
-package com.example.moviepicker
+package com.example.moviepicker.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.moviepicker.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
