@@ -1,4 +1,4 @@
-package com.example.moviepicker.presentation
+package com.example.moviepicker.presentation.activity
 
 import android.content.Intent
 import android.os.Bundle

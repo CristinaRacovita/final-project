@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout>
 
     <data>
-
         <variable
             name="viewModel"
-            type="com.example.moviepicker.presentation.viewmodel.SignInViewModel" />
+            type="com.example.moviepicker.presentation.viewmodel.RegisterViewModel" />
     </data>
 
     <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".presentation.activity.SignInActivity">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            tools:context=".presentation.activity.RegisterActivity">
+
 
             <ImageView
                 android:id="@+id/logo"
@@ -40,7 +41,7 @@
                 android:shadowDx="1.5"
                 android:shadowDy="1.3"
                 android:shadowRadius="10"
-                android:text="@string/sign_in"
+                android:text="@string/register"
                 android:textColor="@color/red_dark"
                 android:textSize="@dimen/title_size"
                 android:textStyle="bold"
@@ -89,12 +90,12 @@
                 android:layout_marginTop="@dimen/button_top_margin"
                 android:layout_marginEnd="@dimen/top_margin"
                 android:background="@drawable/ic_red_button"
-                android:onClick="@{(view) -> viewModel.checkCredentials(view)}"
+                android:onClick="@{(view) -> viewModel.addNewUser(view)}"
                 android:shadowColor="@color/black"
                 android:shadowDx="1.5"
                 android:shadowDy="1.3"
                 android:shadowRadius="10"
-                android:text="@string/login"
+                android:text="@string/sign_up"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
@@ -109,7 +110,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/button_top_margin"
-                android:text="@string/don_t_have_an_account"
+                android:text="@string/have_already_an_account"
                 android:textSize="@dimen/small_text"
                 android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="@+id/login_button"
@@ -120,8 +121,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="@{(view) -> viewModel.goRegister(view)}"
-                android:text="@string/register_now"
+                android:onClick="@{(view) -> viewModel.goLogin(view)}"
+                android:text="@string/log_in_now"
                 android:textColor="@color/black"
                 android:textSize="@dimen/small_text"
                 android:textStyle="bold"
@@ -129,9 +130,8 @@
                 app:layout_constraintStart_toStartOf="@+id/already_account_textView"
                 app:layout_constraintTop_toBottomOf="@+id/already_account_textView" />
 
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </ScrollView>
-
 
 </layout>
