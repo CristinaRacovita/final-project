@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin">10dp</dimen>
+    <dimen name="title_size">24sp</dimen>
+    <dimen name="text_size">18sp</dimen>
+    <dimen name="top_margin">20dp</dimen>
+    <dimen name="button_top_margin">40dp</dimen>
+    <dimen name="small_text">16sp</dimen>
+    <dimen name="small_margin">5dp</dimen>
+</resources>
