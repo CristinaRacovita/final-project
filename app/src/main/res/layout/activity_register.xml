@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.moviepicker.presentation.viewmodel.RegisterViewModel" />
+    </data>
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            tools:context=".presentation.activity.RegisterActivity">
+
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="@dimen/top_margin"
+                android:src="@drawable/ic_clapperboard"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/sign_in_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin"
+                android:gravity="center"
+                android:shadowColor="@color/white"
+                android:shadowDx="1.5"
+                android:shadowDy="1.3"
+                android:shadowRadius="10"
+                android:text="@string/register"
+                android:textColor="@color/red_dark"
+                android:textSize="@dimen/title_size"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/logo" />
+
+
+            <EditText
+                android:id="@+id/email_editView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginTop="@dimen/top_margin"
+                android:layout_marginEnd="@dimen/margin"
+                android:background="@color/grey"
+                android:ems="10"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/margin"
+                android:text="@={viewModel.liveEmail}"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/sign_in_textView" />
+
+
+            <EditText
+                android:id="@+id/password_editView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginTop="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
+                android:background="@color/grey"
+                android:ems="10"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:padding="@dimen/margin"
+                android:text="@={viewModel.livePassword}"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/email_editView" />
+
+
+            <Button
+                android:id="@+id/login_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/top_margin"
+                android:layout_marginTop="@dimen/button_top_margin"
+                android:layout_marginEnd="@dimen/top_margin"
+                android:background="@drawable/ic_red_button"
+                android:onClick="@{(view) -> viewModel.addNewUser(view)}"
+                android:shadowColor="@color/black"
+                android:shadowDx="1.5"
+                android:shadowDy="1.3"
+                android:shadowRadius="10"
+                android:text="@string/sign_up"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/password_editView"
+                app:layout_constraintStart_toStartOf="@id/password_editView"
+                app:layout_constraintTop_toBottomOf="@id/password_editView" />
+
+
+            <TextView
+                android:id="@+id/already_account_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/button_top_margin"
+                android:text="@string/have_already_an_account"
+                android:textSize="@dimen/small_text"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="@+id/login_button"
+                app:layout_constraintStart_toStartOf="@id/login_button"
+                app:layout_constraintTop_toBottomOf="@id/login_button" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{(view) -> viewModel.goLogin(view)}"
+                android:text="@string/log_in_now"
+                android:textColor="@color/black"
+                android:textSize="@dimen/small_text"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/already_account_textView"
+                app:layout_constraintStart_toStartOf="@+id/already_account_textView"
+                app:layout_constraintTop_toBottomOf="@+id/already_account_textView" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</layout>
