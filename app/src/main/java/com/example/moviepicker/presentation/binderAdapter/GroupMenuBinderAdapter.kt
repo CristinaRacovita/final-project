@@ -7,7 +7,6 @@ import com.example.moviepicker.domain.UserItem
 import com.example.moviepicker.presentation.adapter.CreateGroupAdapter
 
 class GroupMenuBinderAdapter {
-
     companion object {
         @BindingAdapter("items")
         @JvmStatic

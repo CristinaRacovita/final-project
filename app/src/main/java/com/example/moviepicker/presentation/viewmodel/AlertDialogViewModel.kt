@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.example.moviepicker.domain.UserItem
 import com.example.moviepicker.domain.useCase.FetchCredentialsUseCase
 
-class AlertDialogViewModel(fetchCredentialsUseCase: FetchCredentialsUseCase): ViewModel() {
+class AlertDialogViewModel(fetchCredentialsUseCase: FetchCredentialsUseCase) : ViewModel() {
     var credentials: ObservableArrayList<UserItem> = ObservableArrayList()
 
     init {
@@ -21,10 +21,6 @@ class AlertDialogViewModel(fetchCredentialsUseCase: FetchCredentialsUseCase): Vi
             }
 
         }
-    }
-
-    fun dismiss(view: View){
-
     }
 
 }

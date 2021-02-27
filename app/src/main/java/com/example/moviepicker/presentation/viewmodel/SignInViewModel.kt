@@ -48,7 +48,9 @@ class SignInViewModel(
         if (!livePassword.get().isNullOrEmpty() && !liveEmail.get().isNullOrEmpty()) {
             for (user: UserItem in credentials) {
                 val md = MessageDigest.getInstance("MD5")
-                val md5Password = BigInteger(1, md.digest(livePassword.get()!!.toByteArray())).toString(16).padStart(32, '0')
+                val md5Password =
+                    BigInteger(1, md.digest(livePassword.get()!!.toByteArray())).toString(16)
+                        .padStart(32, '0')
                 if (liveEmail.get() == user.email && md5Password == user.password) {
                     isOk = true
                     break

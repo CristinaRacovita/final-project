@@ -11,10 +11,6 @@ import com.example.moviepicker.domain.UserItem
 class CreateGroupAdapter(val items: List<UserItem>) :
     RecyclerView.Adapter<CreateGroupAdapter.CreateGroupViewHolder>() {
 
-    init {
-
-    }
-
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int

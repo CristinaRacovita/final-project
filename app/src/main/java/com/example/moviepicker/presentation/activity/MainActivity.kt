@@ -2,13 +2,8 @@ package com.example.moviepicker.presentation.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.MotionEvent
+import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnTouchListener
-import android.view.ViewGroup
-import android.view.ViewParent
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -54,35 +49,17 @@ class MainActivity : AppCompatActivity() {
                 AlertDialogViewModel::class.java
             )
 
-        val binding: GroupMenuBinding = DataBindingUtil.setContentView(this, R.layout.group_menu)
+        val binding: GroupMenuBinding =
+            DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.group_menu, null, false)
 
         binding.viewModel = alertDialogViewModel
 
-        var parentView: ViewParent? = null
-
-        if (binding.root.parent != null) {
-            parentView = binding.root.parent
-            val viewGroup = binding.root.parent as ViewGroup
-            viewGroup.removeView(binding.root)
-        }
-
         alertDialog.setView(binding.root)
 
+        val titleView = layoutInflater.inflate(R.layout.dialog_title, null)
+        alertDialog.setCustomTitle(titleView)
+
         val dialog = alertDialog.create()
-
-        dialog.setCanceledOnTouchOutside(false)
-        dialog.setCancelable(false)
-
-        val buttonCancel = binding.close
-
-        buttonCancel.setOnClickListener {
-            if(binding.root.parent == null) {
-                val viewGroup = parentView as ViewGroup
-                viewGroup.addView(binding.root)
-                dialog.dismiss()
-            }
-
-        }
 
         dialog.show()
 

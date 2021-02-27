@@ -16,38 +16,13 @@
         android:background="@drawable/menu_round_corner"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <ImageView
-            android:id="@+id/close"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/red_round_corner"
-            android:layout_marginTop="@dimen/margin"
-            android:layout_marginEnd="@dimen/margin"
-            android:src="@drawable/ic_baseline_close_24"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <TextView
-            android:id="@+id/title_textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:shadowColor="@color/white"
-            android:shadowDx="1.5"
-            android:shadowDy="1.3"
-            android:shadowRadius="10"
-            android:textColor="@color/red_light"
-            android:textStyle="bold"
-            android:textSize="@dimen/title_size"
-            android:text="@string/watch_together"
-            app:layout_constraintTop_toBottomOf="@id/close"/>
 
         <EditText
             android:id="@+id/username_editView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin"
-            android:layout_marginTop="@dimen/margin"
+            android:layout_marginTop="@dimen/top_margin"
             android:layout_marginEnd="@dimen/margin"
             android:background="@drawable/round_corner"
             android:ems="10"
@@ -55,7 +30,7 @@
             android:inputType="textPassword"
             android:padding="@dimen/margin"
             android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@id/title_textView"
+            app:layout_constraintTop_toTopOf="parent"
             />
 
         <androidx.recyclerview.widget.RecyclerView
