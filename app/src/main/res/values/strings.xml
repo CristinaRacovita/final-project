@@ -16,4 +16,8 @@
     <string name="completed">All fields should be completed!</string>
     <string name="preference_file_key">authenticate</string>
     <string name="log_out">Log Out</string>
+    <string name="create_a_group">Create a group</string>
+    <string name="search">Search..</string>
+    <string name="create">Create</string>
+    <string name="watch_together">Let\'s watch a movie together!</string>
 </resources>

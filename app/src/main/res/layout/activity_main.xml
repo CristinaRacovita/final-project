@@ -7,6 +7,7 @@
     tools:context=".presentation.activity.MainActivity">
 
     <Button
+        android:id="@+id/logout_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="logout"
@@ -14,5 +15,13 @@
         android:textSize="@dimen/title_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="createGroup"
+        android:text="@string/create_a_group"
+        android:textSize="@dimen/title_size"
+        app:layout_constraintTop_toBottomOf="@id/logout_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
