@@ -1,63 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.moviepicker.presentation.viewmodel.AlertDialogViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/menu_round_corner"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:paddingBottom="@dimen/button_top_margin"
-        android:background="@drawable/menu_round_corner"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        android:paddingBottom="@dimen/button_top_margin">
+
+        <TextView
+            android:id="@+id/title_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin"
+            android:gravity="center"
+            android:shadowColor="@color/white"
+            android:shadowDx="1.5"
+            android:shadowDy="1.3"
+            android:shadowRadius="10"
+            android:text="@string/watch_together"
+            android:textColor="@color/red"
+            android:textSize="@dimen/title_size"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <EditText
             android:id="@+id/username_editView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin"
-            android:layout_marginTop="@dimen/top_margin"
-            android:layout_marginEnd="@dimen/margin"
+            android:layout_marginStart="@dimen/small_margin"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginEnd="@dimen/small_margin"
             android:background="@drawable/round_corner"
             android:ems="10"
             android:hint="@string/search"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:padding="@dimen/margin"
+            android:text="@={viewModel.filterText}"
             android:textColor="@color/black"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toBottomOf="@id/title_textView" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin"
-            android:layout_marginTop="@dimen/margin"
-            android:layout_marginEnd="@dimen/margin"
+            android:layout_marginTop="@dimen/small_margin"
+            app:allItems="@{viewModel.credentials}"
+            app:filter="@{viewModel.filterText}"
             app:items="@{viewModel.credentials}"
+            app:layout_constraintTop_toBottomOf="@id/username_editView"
+            app:progressBar="@{progressBar}"
+            app:progressBar1="@{progressBar}" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/top_margin"
+            android:paddingBottom="@dimen/top_margin"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/username_editView" />
 
         <Button
+            android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/rv"
-            app:layout_constraintStart_toStartOf="@id/rv"
-            app:layout_constraintEnd_toEndOf="@id/rv"
-            android:layout_marginTop="@dimen/margin"
-            android:text="@string/create_a_group"
+            android:layout_marginTop="200dp"
             android:background="@drawable/ic_red_button"
             android:shadowColor="@color/black"
             android:shadowDx="1.5"
             android:shadowDy="1.3"
-            android:layout_marginBottom="@dimen/top_margin"
             android:shadowRadius="10"
-            android:textStyle="bold"/>
+            android:text="@string/create_a_group"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/username_editView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

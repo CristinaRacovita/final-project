@@ -56,9 +56,6 @@ class MainActivity : AppCompatActivity() {
 
         alertDialog.setView(binding.root)
 
-        val titleView = layoutInflater.inflate(R.layout.dialog_title, null)
-        alertDialog.setCustomTitle(titleView)
-
         val dialog = alertDialog.create()
 
         dialog.show()

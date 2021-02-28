@@ -1,39 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <variable
             name="model"
-            type="com.example.moviepicker.domain.UserItem" />
+            type="com.example.moviepicker.presentation.viewmodel.ItemViewModel" />
     </data>
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_margin="@dimen/small_margin"
         android:background="@drawable/round_corner">
 
         <ImageView
+            android:id="@+id/user_profile"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_margin="@dimen/margin"
             android:src="@drawable/ic_user_profile"
-            android:layout_margin="@dimen/margin"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/username_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Username"
+            android:layout_marginStart="@dimen/margin"
+            android:paddingStart="1dp"
+            android:paddingEnd="1dp"
+            android:paddingBottom="5dp"
             android:shadowColor="@color/black"
             android:shadowDx="1.5"
             android:shadowDy="1.3"
             android:shadowRadius="10"
-            android:textStyle="bold"
-            android:text="@{model.email}"
-            android:paddingEnd="@dimen/margin"
-            android:paddingStart="@dimen/margin"
-            android:textSize="@dimen/text_size"
-            android:layout_marginStart="60dp"
+            android:text="@{model.username}"
             android:textColor="@color/white"
-            android:layout_marginTop="20dp"/>
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/user_profile"
+            app:layout_constraintStart_toEndOf="@+id/user_profile"
+            app:layout_constraintTop_toTopOf="@id/user_profile"
+            tools:text="Username" />
 
-    </FrameLayout>
+        <ToggleButton
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="@dimen/small_margin"
+            android:background="@drawable/custom_toggle"
+            android:checked="@={model.isChecked}"
+            android:onClick="@{(view) -> model.selectUser(view,model, model.isChecked)}"
+            android:textColor="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="@id/username_textView"
+            app:layout_constraintStart_toEndOf="@id/username_textView"
+            app:layout_constraintTop_toTopOf="@id/username_textView" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

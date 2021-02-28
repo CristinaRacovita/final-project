@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.moviepicker.R
 import com.example.moviepicker.databinding.MenuGroupItemBinding
 import com.example.moviepicker.domain.UserItem
+import com.example.moviepicker.presentation.viewmodel.ItemViewModel
 
-class CreateGroupAdapter(val items: List<UserItem>) :
+class CreateGroupAdapter(private var items: List<ItemViewModel>) :
     RecyclerView.Adapter<CreateGroupAdapter.CreateGroupViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -31,12 +32,21 @@ class CreateGroupAdapter(val items: List<UserItem>) :
     }
 
     override fun getItemCount(): Int {
-        return items.size
+        val maxSize = 4
+        if (items.size <= maxSize)
+            return items.size
+
+        return maxSize
     }
 
-    class CreateGroupViewHolder(val binding: MenuGroupItemBinding) :
+    fun updateItems(users: List<ItemViewModel>){
+        this.items = users
+        notifyDataSetChanged()
+    }
+
+    class CreateGroupViewHolder(private val binding: MenuGroupItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: UserItem) {
+        fun bind(item: ItemViewModel) {
             binding.model = item
         }
     }
