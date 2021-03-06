@@ -47,15 +47,14 @@ class RegisterViewModel(
 
     fun addNewUser(view: View) {
         if (!livePassword.get().isNullOrEmpty() && !liveEmail.get().isNullOrEmpty()) {
-            if (!existsAlready(UserItem(liveEmail.get()!!, livePassword.get()!!))) {
+            if (!existsAlready(UserItem(email = liveEmail.get()!!, password = livePassword.get()!!))) {
                 sharedPreferences.edit().putBoolean(auth_tag, true).apply()
                 val md = MessageDigest.getInstance("MD5")
                 val md5Password =
                     BigInteger(1, md.digest(livePassword.get()!!.toByteArray())).toString(16)
                         .padStart(32, '0')
                 addUserUseCase.addUser(
-                    credentials.size,
-                    UserItem(liveEmail.get()!!, md5Password)
+                    UserItem(email = liveEmail.get()!!,password =  md5Password)
                 )
                 navigationLiveData.value = MainActivity::class.java
             } else {
