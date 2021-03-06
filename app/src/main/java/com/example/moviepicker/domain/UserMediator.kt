@@ -23,9 +23,9 @@ class UserMediator(private val remoteRepository: UserRepository) {
         return credentials
     }
 
-    fun createNewUser(number: Int, userItem: UserItem) {
+    fun createNewUser(userItem: UserItem) {
         executorService.execute {
-            remoteRepository.createNewUser(number, UserBuilder.toDTO(userItem))
+            remoteRepository.createNewUser(UserBuilder.toDTO(userItem))
         }
     }
 }

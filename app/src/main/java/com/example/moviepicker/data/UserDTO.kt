@@ -1,3 +1,5 @@
 package com.example.moviepicker.data
 
-data class UserDTO(val email: String, val password: String)
+import com.google.gson.annotations.SerializedName
+
+data class UserDTO(@SerializedName("user_id") val id: Int? = 0, @SerializedName("username") val email: String, val password: String)

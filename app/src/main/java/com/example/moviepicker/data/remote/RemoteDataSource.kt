@@ -14,8 +14,8 @@ class RemoteDataSource(val api: MoviePickerAPI) : UserRepository {
         return Collections.emptyList()
     }
 
-    override fun createNewUser(number: Int, userDTO: UserDTO): UserDTO {
-        return api.createNewUser(number, userDTO).execute().body()!!
+    override fun createNewUser(userDTO: UserDTO): UserDTO {
+        return api.createNewUser(userDTO).execute().body()!!
     }
 
 
