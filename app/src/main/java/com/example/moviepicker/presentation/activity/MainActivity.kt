@@ -11,17 +11,30 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.moviepicker.R
 import com.example.moviepicker.data.remote.MoviePickerAPI
 import com.example.moviepicker.data.remote.RemoteDataSource
+import com.example.moviepicker.databinding.ActivityMainBinding
 import com.example.moviepicker.databinding.GroupMenuBinding
 import com.example.moviepicker.domain.UserMediator
 import com.example.moviepicker.domain.useCase.FetchCredentialsUseCase
 import com.example.moviepicker.presentation.viewModelFactory.AlertDialogViewModelFactory
+import com.example.moviepicker.presentation.viewModelFactory.MainViewModelFactory
 import com.example.moviepicker.presentation.viewmodel.AlertDialogViewModel
+import com.example.moviepicker.presentation.viewmodel.MainViewModel
 import com.example.moviepicker.presentation.viewmodel.RegisterViewModel
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        val mainViewModel =
+            ViewModelProvider(
+                this,
+                MainViewModelFactory()
+            ).get(
+                MainViewModel::class.java
+            )
+        val binding: ActivityMainBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.model = mainViewModel
     }
 
     fun logout(view: View) {
