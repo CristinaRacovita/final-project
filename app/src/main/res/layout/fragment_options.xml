@@ -1,24 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.fragment.OptionsFragment">
+<layout>
 
-    <Button
-        android:id="@+id/all_movies_button"
+    <data>
+
+        <variable
+            name="optionsViewModel"
+            type="com.example.moviepicker.presentation.viewmodel.OptionsViewModel" />
+    </data>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin"
-        android:layout_marginTop="@dimen/top_margin"
-        android:layout_marginEnd="@dimen/margin"
-        android:layout_marginBottom="@dimen/button_top_margin"
-        android:background="@drawable/ic_red_button"
-        android:text="@string/log_out"
-        android:onClick="logout"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="@dimen/title_size"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        tools:context=".presentation.fragment.OptionsFragment">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/button_top_margin">
+
+            <TextView
+                android:id="@+id/account_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginTop="@dimen/margin"
+                android:gravity="start"
+                android:text="@string/account"
+                android:textSize="@dimen/title_size"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/profile_imageView"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="@dimen/margin"
+                android:src="@drawable/ic_user_profile"
+                app:layout_constraintEnd_toEndOf="@id/account_textView"
+                app:layout_constraintStart_toStartOf="@id/account_textView"
+                app:layout_constraintTop_toBottomOf="@id/account_textView" />
+
+            <TextView
+                android:id="@+id/username_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginTop="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
+                android:drawablePadding="5dp"
+                android:text="@string/username"
+                android:textSize="@dimen/text_size"
+                app:drawableStartCompat="@drawable/ic_baseline_email_24"
+                app:layout_constraintTop_toBottomOf="@id/profile_imageView" />
+
+            <TextView
+                android:id="@+id/birthday_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginTop="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
+                android:drawablePadding="5dp"
+                android:text="@string/birthday"
+                android:textSize="@dimen/text_size"
+                app:drawableStartCompat="@drawable/ic_baseline_calendar_today_24"
+                app:layout_constraintTop_toBottomOf="@id/username_textView" />
+
+            <Button
+                android:id="@+id/log_out_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginTop="@dimen/top_margin"
+                android:layout_marginEnd="@dimen/margin"
+                android:layout_marginBottom="@dimen/button_top_margin"
+                android:background="@drawable/ic_red_button"
+                android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+                android:onClick="@{(view) -> optionsViewModel.logout(view)}"
+                android:text="@string/log_out"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/birthday_textView" />
+
+            <TextView
+                android:id="@+id/phone_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginTop="@dimen/top_margin"
+                android:gravity="start"
+                android:text="@string/phone"
+                android:textSize="@dimen/title_size"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/log_out_button" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/dark_mode_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginTop="@dimen/margin"
+                android:text="@string/dark_mode"
+                android:textColor="#888888"
+                android:textSize="@dimen/text_size"
+                app:isChecked="@{optionsViewModel.sharedPreferences}"
+                android:onCheckedChanged="@{(view, checked) -> optionsViewModel.onCheckedChanged(view, checked)}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/phone_textView" />
+
+            <TextView
+                android:id="@+id/language_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/language"
+                android:textSize="@dimen/text_size"
+                app:layout_constraintStart_toStartOf="@id/dark_mode_switch"
+                app:layout_constraintTop_toBottomOf="@id/dark_mode_switch" />
+
+            <Spinner
+                android:id="@+id/language_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small_margin"
+                app:fillSpinner="@{optionsViewModel.fillSpinner}"
+                app:layout_constraintBottom_toBottomOf="@id/language_textView"
+                app:layout_constraintStart_toEndOf="@id/language_textView"
+                app:layout_constraintTop_toTopOf="@id/language_textView" />
+
+            <TextView
+                android:id="@+id/get_help_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginTop="@dimen/top_margin"
+                android:gravity="start"
+                android:text="@string/get_help"
+                android:textSize="@dimen/title_size"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/language_textView" />
+
+            <Button
+                android:id="@+id/get_help_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginTop="@dimen/top_margin"
+                android:layout_marginEnd="@dimen/margin"
+                android:layout_marginBottom="@dimen/button_top_margin"
+                android:background="@drawable/ic_red_button"
+                android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+                android:text="@string/contact_us"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/get_help_textView" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+</layout>

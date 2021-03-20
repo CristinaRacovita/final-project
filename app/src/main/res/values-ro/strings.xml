@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Movie Picker</string>
+    <string name="sign_in">Logare</string>
+    <string name="email">Nume utilizator</string>
+    <string name="password">Parola</string>
+    <string name="login">Intra in cont</string>
+    <string name="don_t_have_an_account">Nu ai cont?</string>
+    <string name="register_now">Inregistreaza-te acum!</string>
+    <string name="email_pass_incorrect">Numele de utilizator sau parola sunt incorecte!</string>
+    <string name="register">Inregistrare</string>
+    <string name="sign_up">Inregistrare</string>
+    <string name="have_already_an_account">Ai deja un cont?</string>
+    <string name="log_in_now">Logheaza-te acum!</string>
+    <string name="already_exists">Acest cont exista deja!</string>
+    <string name="new_user_successfully">Cont creat cu succes!</string>
+    <string name="completed">Toate campurile trebuie completate!</string>
+    <string name="preference_file_key">authenticate</string>
+    <string name="log_out">Iesi din cont</string>
+    <string name="create_a_group">Creaza un cont</string>
+    <string name="search">Cautare..</string>
+    <string name="create">Creaza</string>
+    <string name="watch_together">Hai sa vedem impreuna un film!</string>
+    <string name="home">Acasa</string>
+    <string name="settings">Setari</string>
+    <string name="my_parties">Petrecerile mele</string>
+    <string name="what_movie_should_i_see_next">Ce film ar trebui sa vad acum?</string>
+    <string name="all_my_watched_movies">Toate filmele pe care le-am vazut</string>
+    <string name="options">Optiuni</string>
+    <string name="start_new_n_watch_party">Incepe un nou Watch Party</string>
+    <string name="account"><u>Cont</u></string>
+    <string name="phone"><u>Telefon</u></string>
+    <string name="get_help"><u>Ai nevoie de ajutor?</u></string>
+    <string name="contact_us">Contacteaza-ne</string>
+    <string name="language">Limba:</string>
+    <string name="dark_mode">Mod intunecat</string>
+    <string name="birthday">Zi de nastere</string>
+    <string name="username">Nume de utilizator</string>
+    <string-array name="language_array">
+        <item>Engleza</item>
+        <item>Romana</item>
+    </string-array>
+</resources>

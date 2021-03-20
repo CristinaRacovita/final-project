@@ -3,7 +3,9 @@ package com.example.moviepicker.presentation.activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.moviepicker.R
+import com.example.moviepicker.presentation.viewmodel.OptionsViewModel
 import com.example.moviepicker.presentation.viewmodel.RegisterViewModel
 
 class SplashActivity : AppCompatActivity() {
@@ -23,5 +25,14 @@ class SplashActivity : AppCompatActivity() {
 
         startActivity(intent)
         finish()
+
+        val checked =
+            this.getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE)
+                .getBoolean(OptionsViewModel.darkMode, false)
+        if (checked) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 }
