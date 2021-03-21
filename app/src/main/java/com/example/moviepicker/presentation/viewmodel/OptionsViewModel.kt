@@ -9,10 +9,9 @@ import androidx.lifecycle.ViewModel
 import com.example.moviepicker.presentation.activity.SignInActivity
 
 class OptionsViewModel(val sharedPreferences: SharedPreferences) : ViewModel() {
-    var fillSpinner: ObservableField<String> = ObservableField()
     var navigationLiveData = MutableLiveData<Class<*>>()
 
-    companion object{
+    companion object {
         const val darkMode: String = "DarkMode"
     }
 

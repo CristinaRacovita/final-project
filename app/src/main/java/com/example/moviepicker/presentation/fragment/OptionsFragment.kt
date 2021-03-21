@@ -29,8 +29,6 @@ class OptionsFragment : Fragment() {
                 AppCompatActivity.MODE_PRIVATE
             )
 
-
-
         val optionsViewModel =
             ViewModelProvider(
                 this,
@@ -54,4 +52,6 @@ class OptionsFragment : Fragment() {
 
         return binding.root
     }
+
+
 }

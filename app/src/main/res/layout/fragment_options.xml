@@ -112,24 +112,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/phone_textView" />
 
-            <TextView
-                android:id="@+id/language_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/language"
-                android:textSize="@dimen/text_size"
-                app:layout_constraintStart_toStartOf="@id/dark_mode_switch"
-                app:layout_constraintTop_toBottomOf="@id/dark_mode_switch" />
-
-            <Spinner
-                android:id="@+id/language_spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/small_margin"
-                app:fillSpinner="@{optionsViewModel.fillSpinner}"
-                app:layout_constraintBottom_toBottomOf="@id/language_textView"
-                app:layout_constraintStart_toEndOf="@id/language_textView"
-                app:layout_constraintTop_toTopOf="@id/language_textView" />
 
             <TextView
                 android:id="@+id/get_help_textView"
@@ -141,7 +123,7 @@
                 android:text="@string/get_help"
                 android:textSize="@dimen/title_size"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/language_textView" />
+                app:layout_constraintTop_toBottomOf="@id/dark_mode_switch" />
 
             <Button
                 android:id="@+id/get_help_button"
