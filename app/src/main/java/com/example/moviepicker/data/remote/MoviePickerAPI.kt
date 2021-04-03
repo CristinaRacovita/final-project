@@ -19,7 +19,8 @@ interface MoviePickerAPI {
 
     companion object {
         private val BASE_URL: String
-            get() = "https://film-server-api.herokuapp.com/"
+//            get() = "https://film-server-api.herokuapp.com/"
+            get()="localhost:8000/"
 
         fun createAPI(): MoviePickerAPI {
             val interceptor = HttpLoggingInterceptor()
