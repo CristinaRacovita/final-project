@@ -42,7 +42,7 @@ class RegisterViewModel(
     }
 
     companion object {
-        val auth_tag = "auth"
+        const val auth_tag = "auth"
     }
 
     fun addNewUser(view: View) {

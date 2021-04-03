@@ -26,8 +26,7 @@ class SignInViewModel(
     var navigationLiveData = MutableLiveData<Class<*>>()
     var status = MutableLiveData<Boolean?>()
     var empty = MutableLiveData<Boolean?>()
-    private val TAG = "SignInViewModel"
-
+    private val tag = "SignInViewModel"
 
     init {
         val liveItems: LiveData<List<UserItem>> = fetchCredentialsUseCase.getCredentials()
@@ -60,10 +59,10 @@ class SignInViewModel(
             if (isOk) {
                 sharedPreferences.edit().putBoolean(RegisterViewModel.auth_tag, true).apply()
 
-                Log.d(TAG, "Right Credentials")
+                Log.d(tag, "Right Credentials")
                 navigationLiveData.value = MainActivity::class.java
             } else {
-                Log.d(TAG, "Wrong Credentials")
+                Log.d(tag, "Wrong Credentials")
                 status.value = true
             }
         } else {

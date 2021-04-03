@@ -1,145 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.fragment.HomeFragment">
+<layout>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/group_cardView"
-        android:layout_width="160dp"
-        android:layout_height="130dp"
-        android:layout_margin="@dimen/margin"
-        android:layout_marginTop="@dimen/button_top_margin"
-        app:cardBackgroundColor="@color/red"
-        app:cardCornerRadius="25dp"
-        app:layout_constraintEnd_toStartOf="@+id/new_cardView"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/app_name_textView"
-        app:layout_constraintTop_toTopOf="parent">
+    <data>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
+        <variable
+            name="homeModel"
+            type="com.example.moviepicker.presentation.viewmodel.HomeViewModel" />
+    </data>
 
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_group" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:gravity="center"
-                android:shadowColor="@color/black"
-                android:shadowDx="1.5"
-                android:shadowDy="1.3"
-                android:shadowRadius="10"
-                android:text="@string/my_parties"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/new_cardView"
-        android:layout_width="160dp"
-        android:layout_height="130dp"
-        android:layout_margin="@dimen/margin"
-        android:onClick="createGroup"
-        android:layout_marginTop="@dimen/button_top_margin"
-        app:cardBackgroundColor="@color/red"
-        app:cardCornerRadius="25dp"
-        app:layout_constraintBottom_toBottomOf="@+id/group_cardView"
-        app:layout_constraintEnd_toStartOf="@+id/app_name_textView"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/group_cardView"
-        app:layout_constraintTop_toTopOf="@+id/group_cardView">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_baseline_add_24" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:shadowColor="@color/black"
-                android:shadowDx="1.5"
-                android:shadowDy="1.3"
-                android:shadowRadius="10"
-                android:text="@string/start_new_n_watch_party"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/app_name_textView"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:shadowColor="@color/white"
-        android:shadowDx="1.5"
-        android:shadowDy="1.3"
-        android:shadowRadius="10"
-        android:text="@string/app_name"
-        android:textColor="@color/red_dark"
-        android:textSize="45sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/next_movie_button"
-        app:layout_constraintTop_toBottomOf="@id/group_cardView" />
+        android:layout_height="match_parent"
+        tools:context=".presentation.fragment.HomeFragment">
 
-    <Button
-        android:id="@+id/next_movie_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/top_margin"
-        android:background="@drawable/ic_red_button"
-        android:text="@string/what_movie_should_i_see_next"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_size"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/all_movies_button"
-        app:layout_constraintEnd_toEndOf="@id/all_movies_button"
-        app:layout_constraintStart_toStartOf="@id/all_movies_button" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/group_cardView"
+            android:layout_width="160dp"
+            android:layout_height="130dp"
+            android:layout_margin="@dimen/margin"
+            android:layout_marginTop="@dimen/button_top_margin"
+            app:cardBackgroundColor="@color/red"
+            app:cardCornerRadius="25dp"
+            app:layout_constraintEnd_toStartOf="@+id/new_cardView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/app_name_textView"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/all_movies_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin"
-        android:layout_marginTop="@dimen/top_margin"
-        android:layout_marginEnd="@dimen/margin"
-        android:layout_marginBottom="@dimen/button_top_margin"
-        android:background="@drawable/ic_red_button"
-        android:text="@string/all_my_watched_movies"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_size"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
 
-        />
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_group" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:gravity="center"
+                    android:shadowColor="@color/black"
+                    android:shadowDx="1.5"
+                    android:shadowDy="1.3"
+                    android:shadowRadius="10"
+                    android:text="@string/my_parties"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/new_cardView"
+            android:layout_width="160dp"
+            android:layout_height="130dp"
+            android:layout_margin="@dimen/margin"
+            android:layout_marginTop="@dimen/button_top_margin"
+            android:onClick="createGroup"
+            app:cardBackgroundColor="@color/red"
+            app:cardCornerRadius="25dp"
+            app:layout_constraintBottom_toBottomOf="@+id/group_cardView"
+            app:layout_constraintEnd_toStartOf="@+id/app_name_textView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/group_cardView"
+            app:layout_constraintTop_toTopOf="@+id/group_cardView">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:fragmentManager="@{homeModel.fragmentManager}">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_add_24" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:shadowColor="@color/black"
+                    android:shadowDx="1.5"
+                    android:shadowDy="1.3"
+                    android:shadowRadius="10"
+                    android:text="@string/start_new_n_watch_party"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/app_name_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:shadowColor="@color/white"
+            android:shadowDx="1.5"
+            android:shadowDy="1.3"
+            android:shadowRadius="10"
+            android:text="@string/app_name"
+            android:textColor="@color/red_dark"
+            android:textSize="45sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/next_movie_button"
+            app:layout_constraintTop_toBottomOf="@id/group_cardView" />
+
+        <Button
+            android:id="@+id/next_movie_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/top_margin"
+            android:background="@drawable/ic_red_button"
+            android:text="@string/what_movie_should_i_see_next"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/all_movies_button"
+            app:layout_constraintEnd_toEndOf="@id/all_movies_button"
+            app:layout_constraintStart_toStartOf="@id/all_movies_button" />
+
+        <Button
+            android:id="@+id/all_movies_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/top_margin"
+            android:layout_marginEnd="@dimen/margin"
+            android:layout_marginBottom="@dimen/button_top_margin"
+            android:background="@drawable/ic_red_button"
+            android:text="@string/all_my_watched_movies"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,9 +1,13 @@
 package com.example.moviepicker.presentation.binderAdapter
 
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.SwitchCompat
 import androidx.databinding.BindingAdapter
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import com.example.moviepicker.presentation.viewmodel.OptionsViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
