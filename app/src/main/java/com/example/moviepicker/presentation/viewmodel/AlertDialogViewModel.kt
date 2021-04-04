@@ -4,11 +4,11 @@ import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.example.moviepicker.domain.UserItem
+import com.example.moviepicker.domain.items.UserItem
 import com.example.moviepicker.domain.useCase.FetchCredentialsUseCase
 
 class AlertDialogViewModel(fetchCredentialsUseCase: FetchCredentialsUseCase) : ViewModel() {
-    var credentials: ObservableArrayList<ItemViewModel> = ObservableArrayList()
+    var credentials: ObservableArrayList<GroupItemViewModel> = ObservableArrayList()
     var filterText: ObservableField<String> = ObservableField()
 
     init {
@@ -16,10 +16,10 @@ class AlertDialogViewModel(fetchCredentialsUseCase: FetchCredentialsUseCase) : V
 
         liveItems.observeForever { items: List<UserItem?>? ->
             if (items != null) {
-                val users: MutableList<ItemViewModel> = ArrayList()
+                val users: MutableList<GroupItemViewModel> = ArrayList()
 
                 for (userItem: UserItem? in items) {
-                    val itemViewModel = ItemViewModel()
+                    val itemViewModel = GroupItemViewModel()
                     itemViewModel.username.set(userItem?.email)
                     users.add(itemViewModel)
                 }

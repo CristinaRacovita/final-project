@@ -26,17 +26,16 @@
     <string name="what_movie_should_i_see_next">Ce film ar trebui sa vad acum?</string>
     <string name="all_my_watched_movies">Toate filmele pe care le-am vazut</string>
     <string name="options">Optiuni</string>
-    <string name="start_new_n_watch_party">Incepe un nou Watch Party</string>
+    <string name="start_new_n_watch_party">Începe un nou Watch Party</string>
     <string name="account"><u>Cont</u></string>
     <string name="phone"><u>Telefon</u></string>
     <string name="get_help"><u>Ai nevoie de ajutor?</u></string>
-    <string name="contact_us">Contacteaza-ne</string>
+    <string name="contact_us">Contactează-ne</string>
     <string name="language">Limba:</string>
-    <string name="dark_mode">Mod intunecat</string>
-    <string name="birthday">Zi de nastere</string>
+    <string name="dark_mode">Mod întunecat</string>
+    <string name="birthday">Zi de naștere</string>
     <string name="username">Nume de utilizator</string>
-    <string-array name="language_array">
-        <item>Engleza</item>
-        <item>Romana</item>
-    </string-array>
+    <string name="please_select_five_movies_you_already_watched">Te rugăm să alegi cinci filme pe care deja le-ai văzut!</string>
+    <string name="next">Continuă</string>
+    <string name="you_selected_x_movies">Ai selectat %1$d filme.</string>
 </resources>

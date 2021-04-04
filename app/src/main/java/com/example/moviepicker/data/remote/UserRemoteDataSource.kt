@@ -1,10 +1,10 @@
 package com.example.moviepicker.data.remote
 
 import com.example.moviepicker.data.UserDTO
-import com.example.moviepicker.domain.UserRepository
+import com.example.moviepicker.domain.repository.UserRepository
 import java.util.*
 
-class RemoteDataSource(val api: MoviePickerAPI) : UserRepository {
+class UserRemoteDataSource(private val api: MoviePickerAPI) : UserRepository {
 
     override fun getCredentials(): List<UserDTO> {
         val credentials = api.getCredentials().execute().body()
@@ -17,6 +17,7 @@ class RemoteDataSource(val api: MoviePickerAPI) : UserRepository {
     override fun createNewUser(userDTO: UserDTO): UserDTO {
         return api.createNewUser(userDTO).execute().body()!!
     }
+
 
 
 }

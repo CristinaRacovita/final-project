@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <data>
-
         <variable
             name="model"
-            type="com.example.moviepicker.presentation.viewmodel.ItemViewModel" />
+            type="com.example.moviepicker.presentation.viewmodel.GroupItemViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

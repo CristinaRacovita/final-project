@@ -1,6 +1,7 @@
-package com.example.moviepicker.domain
+package com.example.moviepicker.domain.builder
 
 import com.example.moviepicker.data.UserDTO
+import com.example.moviepicker.domain.items.UserItem
 
 class UserBuilder {
     companion object {

@@ -1,4 +1,4 @@
-package com.example.moviepicker.domain
+package com.example.moviepicker.domain.repository
 
 import com.example.moviepicker.data.UserDTO
 

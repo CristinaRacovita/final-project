@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.moviepicker.presentation.viewmodel.ChooseMoviesViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.activity.ChooseMoviesActivity">
+
+        <TextView
+            android:id="@+id/title_five_movie_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/top_margin"
+            android:gravity="center"
+            android:text="@string/please_select_five_movies_you_already_watched"
+            android:textColor="@color/red_dark"
+            android:textSize="@dimen/title_size"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/movie_title_editView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginEnd="@dimen/margin"
+            android:drawableStart="@drawable/ic_baseline_search_24"
+            android:drawablePadding="@dimen/small_margin"
+            android:ems="10"
+            android:text="@={viewModel.filterText}"
+            android:hint="@string/search"
+            android:textColor="@color/red_dark"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintTop_toBottomOf="@id/title_five_movie_textView" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/movies_rv"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_marginTop="@dimen/margin"
+            app:layout_constraintTop_toBottomOf="@id/movie_title_editView"
+            app:listener="@{viewModel::onItemTap}"
+            app:movies="@{viewModel.movies}"
+            app:allItems="@{viewModel.movies}"
+            app:filter="@{viewModel.filterText}"/>
+
+        <TextView
+            android:id="@+id/movies_picked_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/top_margin"
+            android:gravity="center"
+            android:textColor="@color/red_dark"
+            android:textSize="@dimen/title_size"
+            app:layout_constraintTop_toBottomOf="@id/movies_rv"
+            app:noMovies="@{viewModel.numbersOfPickedMovies}"
+            tools:text="You selected 0 movies." />
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/top_margin"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginEnd="@dimen/top_margin"
+            android:background="@drawable/ic_red_button"
+            app:noMovies="@{viewModel.numbersOfPickedMovies}"
+            android:shadowColor="@color/black"
+            android:shadowDx="1.5"
+            android:shadowDy="1.3"
+            android:shadowRadius="10"
+            android:text="@string/next"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/movies_picked_textView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

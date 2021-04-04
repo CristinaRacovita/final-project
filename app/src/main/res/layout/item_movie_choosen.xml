@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="movieItemViewModel"
+            type="com.example.moviepicker.presentation.viewmodel.DisplayMovieItemViewModel" />
+
+        <variable
+            name="listener"
+            type="com.example.moviepicker.presentation.listener.DisplayMovieListener" />
+    </data>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/margin"
+        android:layout_marginBottom="@dimen/small_margin"
+        android:background="@color/grey"
+        android:clickable="true"
+        android:focusable="true"
+        app:toggle="@{movieItemViewModel.isMoviePicked}">
+
+        <TextView
+            android:id="@+id/title_textView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:onClick="@{() ->  listener.onItemTap(movieItemViewModel)}"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/margin"
+            android:paddingEnd="@dimen/margin"
+            android:text="@{movieItemViewModel.movieTitle}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size"
+            tools:text="Title" />
+
+    </FrameLayout>
+</layout>

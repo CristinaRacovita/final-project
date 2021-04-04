@@ -8,7 +8,7 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.moviepicker.domain.UserItem
+import com.example.moviepicker.domain.items.UserItem
 import com.example.moviepicker.domain.useCase.FetchCredentialsUseCase
 import com.example.moviepicker.presentation.activity.MainActivity
 import com.example.moviepicker.presentation.activity.RegisterActivity

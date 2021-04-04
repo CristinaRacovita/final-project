@@ -6,10 +6,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviepicker.R
 import com.example.moviepicker.databinding.MenuGroupItemBinding
-import com.example.moviepicker.domain.UserItem
-import com.example.moviepicker.presentation.viewmodel.ItemViewModel
+import com.example.moviepicker.presentation.viewmodel.GroupItemViewModel
 
-class CreateGroupAdapter(private var items: List<ItemViewModel>) :
+class CreateGroupAdapter(private var groupItems: List<GroupItemViewModel>) :
     RecyclerView.Adapter<CreateGroupAdapter.CreateGroupViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -27,27 +26,27 @@ class CreateGroupAdapter(private var items: List<ItemViewModel>) :
     }
 
     override fun onBindViewHolder(holder: CreateGroupViewHolder, position: Int) {
-        val item = items[position]
+        val item = groupItems[position]
         holder.bind(item)
     }
 
     override fun getItemCount(): Int {
         val maxSize = 4
-        if (items.size <= maxSize)
-            return items.size
+        if (groupItems.size <= maxSize)
+            return groupItems.size
 
         return maxSize
     }
 
-    fun updateItems(users: List<ItemViewModel>){
-        this.items = users
+    fun updateItems(users: List<GroupItemViewModel>){
+        this.groupItems = users
         notifyDataSetChanged()
     }
 
     class CreateGroupViewHolder(private val binding: MenuGroupItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ItemViewModel) {
-            binding.model = item
+        fun bind(groupItem: GroupItemViewModel) {
+            binding.model = groupItem
         }
     }
 }

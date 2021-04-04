@@ -8,9 +8,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.moviepicker.R
 import com.example.moviepicker.data.remote.MoviePickerAPI
-import com.example.moviepicker.data.remote.RemoteDataSource
+import com.example.moviepicker.data.remote.UserRemoteDataSource
 import com.example.moviepicker.databinding.ActivitySignInBinding
-import com.example.moviepicker.domain.UserMediator
+import com.example.moviepicker.domain.mediator.UserMediator
 import com.example.moviepicker.domain.useCase.FetchCredentialsUseCase
 import com.example.moviepicker.presentation.viewModelFactory.SignInViewModelFactory
 import com.example.moviepicker.presentation.viewmodel.SignInViewModel
@@ -19,7 +19,7 @@ class SignInActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val remoteDataSource = RemoteDataSource(MoviePickerAPI.createAPI())
+        val remoteDataSource = UserRemoteDataSource(MoviePickerAPI.createAPI())
         val mediator = UserMediator(remoteDataSource)
         val sharedPreferences =
             this.getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE)
