@@ -5,59 +5,58 @@ import android.widget.ProgressBar
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.moviepicker.domain.UserItem
 import com.example.moviepicker.presentation.adapter.CreateGroupAdapter
-import com.example.moviepicker.presentation.viewmodel.ItemViewModel
+import com.example.moviepicker.presentation.viewmodel.GroupItemViewModel
 import java.util.*
 
 class GroupMenuBinderAdapter {
     companion object {
         @BindingAdapter("items", "progressBar")
         @JvmStatic
-        fun setItems(recyclerView: RecyclerView, items: List<ItemViewModel>, progressBar: ProgressBar) {
+        fun setItems(recyclerView: RecyclerView, groupItems: List<GroupItemViewModel>, progressBar: ProgressBar) {
             var adapter = recyclerView.adapter
-            if (adapter == null && items.isNotEmpty()) {
-                adapter = CreateGroupAdapter(items)
+            if (adapter == null && groupItems.isNotEmpty()) {
+                adapter = CreateGroupAdapter(groupItems)
                 recyclerView.adapter = adapter
                 val layoutManager: RecyclerView.LayoutManager =
                     GridLayoutManager(recyclerView.context, 2)
                 recyclerView.layoutManager = layoutManager
             }
 
-            changeProgressBarVisibility(items, progressBar)
+            changeProgressBarVisibility(groupItems, progressBar)
         }
 
         @BindingAdapter("allItems", "filter", "progressBar1")
         @JvmStatic
         fun updateItems(
             recyclerView: RecyclerView,
-            allItems: List<ItemViewModel>,
+            allGroupItems: List<GroupItemViewModel>,
             filter: String?,
             progressBar1: ProgressBar
         ) {
-            changeProgressBarVisibility(allItems, progressBar1)
+            changeProgressBarVisibility(allGroupItems, progressBar1)
 
             if (filter != "" && filter != null && recyclerView.adapter != null) {
                 val adapter = recyclerView.adapter as CreateGroupAdapter
-                val newItems: MutableList<ItemViewModel> = ArrayList()
-                for (user: ItemViewModel in allItems) {
+                val newGroupItems: MutableList<GroupItemViewModel> = ArrayList()
+                for (user: GroupItemViewModel in allGroupItems) {
                     if (user.username.get()!!.contains(filter)) {
-                        newItems.add(user)
+                        newGroupItems.add(user)
                     }
                 }
-                changeProgressBarVisibility(newItems, progressBar1)
+                changeProgressBarVisibility(newGroupItems, progressBar1)
 
-                adapter.updateItems(newItems)
+                adapter.updateItems(newGroupItems)
             }
 
             if (filter == "" && recyclerView.adapter != null) {
                 val adapter = recyclerView.adapter as CreateGroupAdapter
-                adapter.updateItems(allItems)
+                adapter.updateItems(allGroupItems)
             }
         }
 
-        private fun changeProgressBarVisibility(items: List<ItemViewModel>, progressBar: ProgressBar) {
-            if (items.isEmpty()) {
+        private fun changeProgressBarVisibility(groupItems: List<GroupItemViewModel>, progressBar: ProgressBar) {
+            if (groupItems.isEmpty()) {
                 progressBar.visibility = View.VISIBLE
             } else {
                 progressBar.visibility = View.INVISIBLE

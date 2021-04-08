@@ -64,7 +64,6 @@
             android:layout_height="130dp"
             android:layout_margin="@dimen/margin"
             android:layout_marginTop="@dimen/button_top_margin"
-            android:onClick="createGroup"
             app:cardBackgroundColor="@color/red"
             app:cardCornerRadius="25dp"
             app:layout_constraintBottom_toBottomOf="@+id/group_cardView"
@@ -130,6 +129,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
             android:textStyle="bold"
+            android:onClick="@{() -> homeModel.getRecommendation()}"
             app:layout_constraintBottom_toTopOf="@id/all_movies_button"
             app:layout_constraintEnd_toEndOf="@id/all_movies_button"
             app:layout_constraintStart_toStartOf="@id/all_movies_button" />

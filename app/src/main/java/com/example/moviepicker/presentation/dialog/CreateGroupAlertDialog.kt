@@ -9,9 +9,9 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.moviepicker.R
 import com.example.moviepicker.data.remote.MoviePickerAPI
-import com.example.moviepicker.data.remote.RemoteDataSource
-import com.example.moviepicker.databinding.GroupMenuBinding
-import com.example.moviepicker.domain.UserMediator
+import com.example.moviepicker.data.remote.UserRemoteDataSource
+import com.example.moviepicker.databinding.AlertGroupMenuBinding
+import com.example.moviepicker.domain.mediator.UserMediator
 import com.example.moviepicker.domain.useCase.FetchCredentialsUseCase
 import com.example.moviepicker.presentation.viewModelFactory.AlertDialogViewModelFactory
 import com.example.moviepicker.presentation.viewmodel.AlertDialogViewModel
@@ -20,7 +20,7 @@ class CreateGroupAlertDialog : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val alertDialog = AlertDialog.Builder(requireContext())
 
-        val remoteDataSource = RemoteDataSource(MoviePickerAPI.createAPI())
+        val remoteDataSource = UserRemoteDataSource(MoviePickerAPI.createAPI())
         val mediator = UserMediator(remoteDataSource)
 
         val alertDialogViewModel =
@@ -33,10 +33,10 @@ class CreateGroupAlertDialog : DialogFragment() {
                 AlertDialogViewModel::class.java
             )
 
-        val binding: GroupMenuBinding =
+        val binding: AlertGroupMenuBinding =
             DataBindingUtil.inflate(
                 LayoutInflater.from(context),
-                R.layout.group_menu,
+                R.layout.alert_group_menu,
                 null,
                 false
             )
