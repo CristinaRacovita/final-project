@@ -14,11 +14,11 @@
         <activity
             android:name=".presentation.activity.ChooseMoviesActivity"
             android:theme="@style/Theme.AuthenticateFullscreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity android:name=".presentation.activity.RateMoviesActivity" />
         <activity
@@ -28,11 +28,11 @@
         <activity
             android:name=".presentation.activity.SplashActivity"
             android:theme="@style/Theme.Fullscreen">
-            <!--            <intent-filter>-->
-            <!--                <action android:name="android.intent.action.MAIN" />-->
+                        <intent-filter>
+                            <action android:name="android.intent.action.MAIN" />
 
-            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-            <!--            </intent-filter>-->
+                            <category android:name="android.intent.category.LAUNCHER" />
+                        </intent-filter>
         </activity>
         <activity
             android:name=".presentation.activity.SignInActivity"

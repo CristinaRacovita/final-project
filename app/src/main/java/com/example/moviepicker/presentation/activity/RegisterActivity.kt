@@ -58,15 +58,15 @@ class RegisterActivity : AppCompatActivity() {
         registerViewModel.navigationLiveData.observe(this, { myClass ->
             myClass?.let {
                 startActivity(Intent(this, myClass))
-//                if (myClass == ChooseMoviesActivity::class.java) {
-//                    Toast.makeText(
-//                        this,
-//                        getString(R.string.new_user_successfully),
-//                        Toast.LENGTH_LONG
-//                    )
-//                        .show()
-//                    finish()
-//                }
+                if (myClass == ChooseMoviesActivity::class.java) {
+                    Toast.makeText(
+                        this,
+                        getString(R.string.new_user_successfully),
+                        Toast.LENGTH_LONG
+                    )
+                        .show()
+                    finish()
+                }
                 registerViewModel.navigationLiveData.value = null
             }
         })

@@ -38,4 +38,5 @@
     <string name="please_select_five_movies_you_already_watched">Please select five movies you already watched!</string>
     <string name="next">Next</string>
     <string name="you_selected_x_movies">You selected %1$d movies.</string>
+    <string name="please_give_us_a_review_for_movies_you_have_picked">Please give us a review for movies you have picked!</string>
 </resources>

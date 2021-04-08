@@ -2,7 +2,6 @@ package com.example.moviepicker.presentation.binderAdapter
 
 import android.widget.Button
 import android.widget.FrameLayout
-import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -65,6 +64,7 @@ class ChooseMoviesBinderAdapter {
         @JvmStatic
         fun goNext(button: Button, noMovies: Int) {
             button.isEnabled = noMovies == 5
+            button.isClickable = noMovies == 5
         }
 
         @BindingAdapter("allItems", "filter")

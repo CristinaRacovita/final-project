@@ -4,9 +4,11 @@ import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableField
 import androidx.databinding.ObservableInt
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.moviepicker.domain.items.DisplayMovieItem
 import com.example.moviepicker.domain.useCase.FetchDisplayMovieUseCase
+import com.example.moviepicker.presentation.activity.RateMoviesActivity
 import com.example.moviepicker.presentation.listener.DisplayMovieListener
 
 class ChooseMoviesViewModel(fetchDisplayMovieUseCase: FetchDisplayMovieUseCase) : ViewModel(),
@@ -14,8 +16,9 @@ class ChooseMoviesViewModel(fetchDisplayMovieUseCase: FetchDisplayMovieUseCase) 
     var movies: ObservableArrayList<DisplayMovieItemViewModel> = ObservableArrayList()
     var numbersOfPickedMovies = ObservableInt()
 
-    private var pickedMovies: MutableList<DisplayMovieItemViewModel> = ArrayList()
+    var pickedMovies: ArrayList<DisplayMovieItemViewModel> = ArrayList()
     var filterText: ObservableField<String> = ObservableField()
+    var navigationLiveData = MutableLiveData<Class<*>>()
 
     init {
         val liveItems: LiveData<List<DisplayMovieItem>> = fetchDisplayMovieUseCase.getMovies()
@@ -41,11 +44,17 @@ class ChooseMoviesViewModel(fetchDisplayMovieUseCase: FetchDisplayMovieUseCase) 
     override fun onItemTap(displayMovieItemViewModel: DisplayMovieItemViewModel) {
         if((numbersOfPickedMovies.get() == 5 && displayMovieItemViewModel.isMoviePicked.get()) || numbersOfPickedMovies.get() < 5){
             displayMovieItemViewModel.isMoviePicked.set(!displayMovieItemViewModel.isMoviePicked.get())
-            if(displayMovieItemViewModel.isMoviePicked.get()){
+            if (displayMovieItemViewModel.isMoviePicked.get()) {
                 numbersOfPickedMovies.set(numbersOfPickedMovies.get() + 1)
-            }else{
+                pickedMovies.add(displayMovieItemViewModel)
+            } else {
                 numbersOfPickedMovies.set(numbersOfPickedMovies.get() - 1)
+                pickedMovies.removeIf { d -> d.movieId.get() == displayMovieItemViewModel.movieId.get() }
             }
         }
+    }
+
+    fun addReviews() {
+        navigationLiveData.value = RateMoviesActivity::class.java
     }
 }

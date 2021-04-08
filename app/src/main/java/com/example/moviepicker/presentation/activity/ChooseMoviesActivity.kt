@@ -1,14 +1,15 @@
 package com.example.moviepicker.presentation.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.moviepicker.R
-import com.example.moviepicker.data.remote.DisplayMovieRemoteDataSource
+import com.example.moviepicker.data.remote.MovieRemoteDataSource
 import com.example.moviepicker.data.remote.MoviePickerAPI
 import com.example.moviepicker.databinding.ActivityChooseMoviesBinding
-import com.example.moviepicker.domain.mediator.DisplayMovieMediator
+import com.example.moviepicker.domain.mediator.MovieMediator
 import com.example.moviepicker.domain.useCase.FetchDisplayMovieUseCase
 import com.example.moviepicker.presentation.viewModelFactory.ChooseViewModelFactory
 import com.example.moviepicker.presentation.viewmodel.ChooseMoviesViewModel
@@ -18,8 +19,8 @@ class ChooseMoviesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_movies)
 
-        val remoteDataSource = DisplayMovieRemoteDataSource(MoviePickerAPI.createAPI())
-        val mediator = DisplayMovieMediator(remoteDataSource)
+        val remoteDataSource = MovieRemoteDataSource(MoviePickerAPI.createAPI())
+        val mediator = MovieMediator(remoteDataSource)
 
         val chooseMoviesViewModel =
             ViewModelProvider(
@@ -32,6 +33,16 @@ class ChooseMoviesActivity : AppCompatActivity() {
         val binding: ActivityChooseMoviesBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_choose_movies)
         binding.viewModel = chooseMoviesViewModel
+
+        chooseMoviesViewModel.navigationLiveData.observe(this, { myClass ->
+            myClass?.let {
+                val intent = Intent(this, myClass)
+                intent.putExtra("picked", chooseMoviesViewModel.pickedMovies)
+                startActivity(intent)
+
+                chooseMoviesViewModel.navigationLiveData.value = null
+            }
+        })
 
     }
 }

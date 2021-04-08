@@ -85,6 +85,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
             android:textStyle="bold"
+            android:onClick="@{() ->  viewModel.addReviews()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/movies_picked_textView" />
     </androidx.constraintlayout.widget.ConstraintLayout>

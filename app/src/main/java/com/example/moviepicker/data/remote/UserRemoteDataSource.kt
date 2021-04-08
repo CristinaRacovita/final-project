@@ -15,9 +15,12 @@ class UserRemoteDataSource(private val api: MoviePickerAPI) : UserRepository {
     }
 
     override fun createNewUser(userDTO: UserDTO): UserDTO {
-        return api.createNewUser(userDTO).execute().body()!!
+        val user  =  api.createNewUser(userDTO).execute().body()
+        if(user != null){
+            return user
+        }
+
+        throw Exception("Some errors in user creation process.")
     }
-
-
 
 }
