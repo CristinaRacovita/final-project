@@ -129,7 +129,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
             android:textStyle="bold"
-            android:onClick="@{() -> homeModel.getRecommendation()}"
+            android:onClick="@{(view) -> homeModel.getRecommendation(view)}"
             app:layout_constraintBottom_toTopOf="@id/all_movies_button"
             app:layout_constraintEnd_toEndOf="@id/all_movies_button"
             app:layout_constraintStart_toStartOf="@id/all_movies_button" />

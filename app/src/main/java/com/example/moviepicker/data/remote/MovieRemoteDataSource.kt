@@ -2,6 +2,7 @@ package com.example.moviepicker.data.remote
 
 import com.example.moviepicker.data.DetailsMovieDTO
 import com.example.moviepicker.data.DisplayMovieDTO
+import com.example.moviepicker.data.RecommendedMovieDTO
 import com.example.moviepicker.domain.repository.MovieRepository
 import java.util.*
 
@@ -22,12 +23,12 @@ class MovieRemoteDataSource(private val api: MoviePickerAPI) : MovieRepository {
         return Collections.emptyList()
     }
 
-    override fun getRecommendedMovie(id: Int): String {
+    override fun getRecommendedMovie(id: Int): List<RecommendedMovieDTO> {
         val movieName = api.getRecommendedMovie(id).execute().body()
         if (movieName != null) {
             return movieName
         }
 
-        return "Something gone wrong."
+        return Collections.emptyList()
     }
 }

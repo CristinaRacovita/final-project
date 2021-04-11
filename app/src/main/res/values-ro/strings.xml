@@ -38,5 +38,5 @@
     <string name="please_select_five_movies_you_already_watched">Te rugăm să alegi cinci filme pe care deja le-ai văzut!</string>
     <string name="next">Continuă</string>
     <string name="you_selected_x_movies">Ai selectat %1$d filme.</string>
-    <string name="please_give_us_a_review_for_movies_you_have_picked">Please give us a review for movies you have picked!</string>
+    <string name="please_give_us_a_review_for_movies_you_have_picked">Te rugăm să ne zici cât de mult ți-au plăcute filmele pe care le-ai ales!</string>
 </resources>
