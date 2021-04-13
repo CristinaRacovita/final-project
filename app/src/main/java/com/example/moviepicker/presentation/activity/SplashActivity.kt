@@ -16,9 +16,12 @@ class SplashActivity : AppCompatActivity() {
 
         val intent: Intent?
         val logged = sharedPreferences.getBoolean(RegisterViewModel.auth_tag, false)
+        val rated = sharedPreferences.getBoolean(RateMoviesActivity.rated_tag, false)
 
-        intent = if (logged) {
+        intent = if (logged && rated) {
             Intent(this, MainActivity::class.java)
+        } else if (logged){
+            Intent(this, ChooseMoviesActivity::class.java)
         } else {
             Intent(this, SignInActivity::class.java)
         }

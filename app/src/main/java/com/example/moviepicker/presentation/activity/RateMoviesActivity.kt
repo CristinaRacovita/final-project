@@ -19,6 +19,10 @@ import com.example.moviepicker.presentation.viewmodel.DisplayMovieItemViewModel
 import com.example.moviepicker.presentation.viewmodel.RateMoviesViewModel
 
 class RateMoviesActivity : AppCompatActivity() {
+    companion object {
+        const val rated_tag = "rated"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rate_movies)
@@ -53,6 +57,7 @@ class RateMoviesActivity : AppCompatActivity() {
         rateMoviesViewModel.navigationLiveData.observe(this, { myClass ->
             myClass?.let {
                 startActivity(Intent(this, myClass))
+                sharedPreferences.edit().putBoolean(rated_tag, true).apply()
                 rateMoviesViewModel.navigationLiveData.value = null
             }
         })
