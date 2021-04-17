@@ -45,5 +45,9 @@
     <string name="remember">Do you like %1$s?</string>
     <string name="add_review">Please, don\'t forget to give it a review!</string>
     <string name="movie_added">The movie is added</string>
+    <string name="please_rate_the_movie_you_just_watched">Please, rate the movie you just watched!</string>
+    <string name="we_think_you_have_to_watch_these_movies">We think you have to watch these movies!</string>
+    <string name="done">Done</string>
+    <string name="thank">Thank you!</string>
 
 </resources>

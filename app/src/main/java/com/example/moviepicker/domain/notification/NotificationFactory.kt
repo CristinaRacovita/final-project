@@ -10,7 +10,7 @@ import android.provider.Settings
 import androidx.annotation.DrawableRes
 import androidx.core.app.NotificationCompat
 
-class NotificationFactory() {
+class NotificationFactory {
     companion object {
         fun sendNotification(
             context: Context,

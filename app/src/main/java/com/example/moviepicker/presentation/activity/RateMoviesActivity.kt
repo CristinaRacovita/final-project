@@ -59,6 +59,7 @@ class RateMoviesActivity : AppCompatActivity() {
                 startActivity(Intent(this, myClass))
                 sharedPreferences.edit().putBoolean(rated_tag, true).apply()
                 rateMoviesViewModel.navigationLiveData.value = null
+                finish()
             }
         })
     }
