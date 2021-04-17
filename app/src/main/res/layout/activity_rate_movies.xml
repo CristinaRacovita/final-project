@@ -14,7 +14,6 @@
         android:layout_height="match_parent"
         tools:context=".presentation.activity.RateMoviesActivity">
 
-
         <TextView
             android:id="@+id/rate_textView"
             android:layout_width="match_parent"

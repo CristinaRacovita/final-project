@@ -39,4 +39,10 @@
     <string name="next">Continuă</string>
     <string name="you_selected_x_movies">Ai selectat %1$d filme.</string>
     <string name="please_give_us_a_review_for_movies_you_have_picked">Te rugăm să ne zici cât de mult ți-au plăcute filmele pe care le-ai ales!</string>
+    <string name="add">Adaugă</string>
+    <string name="description"><u>Descriere</u></string>
+    <string name="pick_me">Alege-mă pe mine!</string>
+    <string name="remember">Ți-a plăcut %1$s?</string>
+    <string name="add_review">Te rugăm să nu uiți să-i dai o notă!</string>
+    <string name="movie_added">The movie is added</string>
 </resources>

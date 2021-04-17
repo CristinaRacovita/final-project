@@ -43,8 +43,8 @@ interface MoviePickerAPI {
             val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(interceptor)
                 .connectTimeout(1, TimeUnit.MINUTES)
-                .writeTimeout(1, TimeUnit.MINUTES) // write timeout
-                .readTimeout(1, TimeUnit.MINUTES) // read timeout
+                .writeTimeout(1, TimeUnit.MINUTES)
+                .readTimeout(1, TimeUnit.MINUTES)
                 .build()
 
             return Retrofit.Builder()

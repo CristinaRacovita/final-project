@@ -11,7 +11,6 @@ class RecommendedMovieBuilder {
                 recommendedMovieItem.title,
                 recommendedMovieItem.imageUrl,
                 recommendedMovieItem.description,
-                recommendedMovieItem.releaseDate
             )
         }
 
@@ -20,7 +19,6 @@ class RecommendedMovieBuilder {
                 recommendedMovieDTO.id,
                 recommendedMovieDTO.title,
                 recommendedMovieDTO.imageUrl,
-                recommendedMovieDTO.releaseDate,
                 recommendedMovieDTO.description
             )
         }

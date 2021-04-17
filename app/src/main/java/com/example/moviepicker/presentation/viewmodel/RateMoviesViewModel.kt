@@ -70,7 +70,7 @@ class RateMoviesViewModel(
         pickedMovieItemViewModel: PickedMovieItemViewModel
     ) {
         ratingBar as RatingBar
-        val stars: Int = ratingBar.rating.toInt()
+        val stars: Float = ratingBar.rating
         pickedMovieItemViewModel.rating.set(stars)
         noOfRatedMovies.set(noOfRatedMovies.get() + 1)
     }
