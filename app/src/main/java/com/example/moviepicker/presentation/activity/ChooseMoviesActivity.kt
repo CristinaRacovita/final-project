@@ -41,6 +41,7 @@ class ChooseMoviesActivity : AppCompatActivity() {
                 startActivity(intent)
 
                 chooseMoviesViewModel.navigationLiveData.value = null
+                finish()
             }
         })
 

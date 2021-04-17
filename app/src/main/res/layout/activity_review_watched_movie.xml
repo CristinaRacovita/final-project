@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.moviepicker.presentation.viewmodel.ReviewWatchedMovieViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:foregroundGravity="center"
+        android:paddingBottom="@dimen/margin">
+
+        <TextView
+            android:id="@+id/please_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/please_rate_the_movie_you_just_watched"
+            android:textColor="@color/red_dark"
+            android:textSize="26sp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/movie_title_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/top_margin"
+            android:gravity="center"
+            android:text="@{viewModel.watchedMovie.title}"
+            android:textSize="@dimen/title_size"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/please_textView"
+            tools:text="Title" />
+
+
+        <ImageView
+            android:id="@+id/movie_poster"
+            android:layout_width="wrap_content"
+            android:layout_height="350dp"
+            android:foregroundGravity="center"
+            android:src="@drawable/ic_image"
+            app:image_url="@{viewModel.watchedMovie.imageUrl}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/movie_title_textView" />
+
+
+        <RatingBar
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:rating="@={viewModel.stars}"
+            android:stepSize="0.5"
+            app:layout_constraintEnd_toEndOf="@id/movie_poster"
+            app:layout_constraintStart_toStartOf="@id/movie_poster"
+            app:layout_constraintTop_toBottomOf="@id/movie_poster" />
+
+        <Button
+            android:id="@+id/watched_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/margin"
+            android:background="@drawable/ic_red_button"
+            android:onClick="@{() -> viewModel.saveReview()}"
+            android:text="@string/done"
+            app:stars="@{viewModel.stars}"
+            app:layout_constraintEnd_toEndOf="@id/rating"
+            app:layout_constraintStart_toStartOf="@id/rating"
+            app:layout_constraintTop_toBottomOf="@id/rating" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

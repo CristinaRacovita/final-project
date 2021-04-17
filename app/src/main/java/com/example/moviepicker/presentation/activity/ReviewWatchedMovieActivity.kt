@@ -2,6 +2,7 @@ package com.example.moviepicker.presentation.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -9,27 +10,21 @@ import com.example.moviepicker.R
 import com.example.moviepicker.data.remote.MoviePickerAPI
 import com.example.moviepicker.data.remote.MovieRemoteDataSource
 import com.example.moviepicker.data.remote.RatingRemoteSource
-import com.example.moviepicker.databinding.ActivityRateMoviesBinding
+import com.example.moviepicker.databinding.ActivityReviewWatchedMovieBinding
 import com.example.moviepicker.domain.mediator.MovieMediator
 import com.example.moviepicker.domain.mediator.RatingMediator
 import com.example.moviepicker.domain.useCase.AddRatingsUseCase
 import com.example.moviepicker.domain.useCase.FetchMovieDetailsUseCase
-import com.example.moviepicker.presentation.viewModelFactory.RateMoviesViewModelFactory
-import com.example.moviepicker.presentation.viewmodel.DisplayMovieItemViewModel
-import com.example.moviepicker.presentation.viewmodel.RateMoviesViewModel
+import com.example.moviepicker.presentation.viewModelFactory.ReviewWatchedMovieViewModelFactory
+import com.example.moviepicker.presentation.viewmodel.ReviewWatchedMovieViewModel
 
-class RateMoviesActivity : AppCompatActivity() {
-    companion object {
-        const val rated_tag = "rated"
-    }
-
+class ReviewWatchedMovieActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_rate_movies)
+        setContentView(R.layout.activity_review_watched_movie)
+
         val sharedPreferences =
             this.getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE)
-
-        val picked = intent.getSerializableExtra("picked") as List<DisplayMovieItemViewModel>?
 
         val movieRemoteDataSource = MovieRemoteDataSource(MoviePickerAPI.createAPI())
         val movieMediator = MovieMediator(movieRemoteDataSource)
@@ -37,28 +32,28 @@ class RateMoviesActivity : AppCompatActivity() {
         val ratingRemoteDataSource = RatingRemoteSource(MoviePickerAPI.createAPI())
         val ratingMediator = RatingMediator(ratingRemoteDataSource)
 
-        val rateMoviesViewModel =
+        val reviewViewModel =
             ViewModelProvider(
                 this,
-                RateMoviesViewModelFactory(
+                ReviewWatchedMovieViewModelFactory(
                     FetchMovieDetailsUseCase(movieMediator),
                     AddRatingsUseCase(ratingMediator),
-                    sharedPreferences,
-                    picked!!
+                    sharedPreferences
                 )
             ).get(
-                RateMoviesViewModel::class.java
+                ReviewWatchedMovieViewModel::class.java
             )
+        val binding: ActivityReviewWatchedMovieBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_review_watched_movie)
+        binding.viewModel = reviewViewModel
 
-        val binding: ActivityRateMoviesBinding =
-            DataBindingUtil.setContentView(this, R.layout.activity_rate_movies)
-        binding.viewModel = rateMoviesViewModel
-
-        rateMoviesViewModel.navigationLiveData.observe(this, { myClass ->
+        reviewViewModel.navigationLiveData.observe(this, { myClass ->
             myClass?.let {
                 startActivity(Intent(this, myClass))
-                sharedPreferences.edit().putBoolean(rated_tag, true).apply()
-                rateMoviesViewModel.navigationLiveData.value = null
+                reviewViewModel.navigationLiveData.value = null
+
+                Toast.makeText(this, getString(R.string.thank), Toast.LENGTH_LONG).show()
+
                 finish()
             }
         })

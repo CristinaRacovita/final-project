@@ -1,14 +1,13 @@
 package com.example.moviepicker.presentation.viewmodel
 
 import android.content.SharedPreferences
-import android.util.Log
 import android.view.View
 import android.widget.RatingBar
 import androidx.databinding.ObservableArrayList
+import androidx.databinding.ObservableInt
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.moviepicker.R
 import com.example.moviepicker.domain.items.DetailsMovieItem
 import com.example.moviepicker.domain.items.RatingItem
 import com.example.moviepicker.domain.useCase.AddRatingsUseCase
@@ -24,6 +23,7 @@ class RateMoviesViewModel(
 ) : ViewModel(), RateListener {
     var pickedMovies: ObservableArrayList<PickedMovieItemViewModel> = ObservableArrayList()
     var navigationLiveData = MutableLiveData<Class<*>>()
+    var noOfRatedMovies = ObservableInt()
 
     init {
         var ids = ""
@@ -70,7 +70,8 @@ class RateMoviesViewModel(
         pickedMovieItemViewModel: PickedMovieItemViewModel
     ) {
         ratingBar as RatingBar
-        val stars: Int = ratingBar.rating.toInt()
+        val stars: Float = ratingBar.rating
         pickedMovieItemViewModel.rating.set(stars)
+        noOfRatedMovies.set(noOfRatedMovies.get() + 1)
     }
 }

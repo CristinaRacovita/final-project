@@ -1,5 +1,6 @@
 package com.example.moviepicker.presentation.binderAdapter
 
+import android.widget.Button
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -46,5 +47,13 @@ class RateMovieBinderAdapter {
                 adapter.updateListener(rateListener)
             }
         }
+
+        @BindingAdapter("my_rated_movies")
+        @JvmStatic
+        fun checkIfRated(button: Button, numberOfMovies: Int) {
+            button.isEnabled = numberOfMovies >= 5
+            button.isClickable = numberOfMovies >= 5
+        }
+
     }
 }

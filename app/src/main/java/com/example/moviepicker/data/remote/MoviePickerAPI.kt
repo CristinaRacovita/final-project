@@ -1,9 +1,6 @@
 package com.example.moviepicker.data.remote
 
-import com.example.moviepicker.data.DetailsMovieDTO
-import com.example.moviepicker.data.DisplayMovieDTO
-import com.example.moviepicker.data.RatingDTO
-import com.example.moviepicker.data.UserDTO
+import com.example.moviepicker.data.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -32,7 +29,7 @@ interface MoviePickerAPI {
     fun rateMovies(@Body ratings: List<RatingDTO>): Call<List<RatingDTO>>
 
     @GET("prediction/{id}")
-    fun getRecommendedMovie(@Path("id") id: Int): Call<String>
+    fun getRecommendedMovie(@Path("id") id: Int): Call<List<RecommendedMovieDTO>>
 
     companion object {
         private val BASE_URL: String
@@ -46,8 +43,8 @@ interface MoviePickerAPI {
             val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(interceptor)
                 .connectTimeout(1, TimeUnit.MINUTES)
-                .writeTimeout(1, TimeUnit.MINUTES) // write timeout
-                .readTimeout(1, TimeUnit.MINUTES) // read timeout
+                .writeTimeout(1, TimeUnit.MINUTES)
+                .readTimeout(1, TimeUnit.MINUTES)
                 .build()
 
             return Retrofit.Builder()

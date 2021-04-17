@@ -1,29 +1,16 @@
 package com.example.moviepicker.presentation.viewmodel
 
-import android.content.SharedPreferences
-import android.util.Log
+import android.view.View
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.example.moviepicker.domain.useCase.GetRecommendedMovieUseCase
+import com.example.moviepicker.presentation.dialog.RecommendationDialog
 
 class HomeViewModel(
-    val fragmentManager: FragmentManager,
-    private val getRecommendedMovieUseCase: GetRecommendedMovieUseCase,
-    val sharedPreferences: SharedPreferences
+    val fragmentManager: FragmentManager
 ) : ViewModel() {
-
-    fun getRecommendation() {
-        val currentUserId = sharedPreferences.getInt("id", -1)
-        val recommendation: LiveData<String> =
-            getRecommendedMovieUseCase.getRecommended(currentUserId)
-
-        recommendation.observeForever { s: String? ->
-            if (s != null) {
-                Log.d("RECOMMENDATION MOVIE", s)
-            }
-
-        }
-
+    fun getRecommendation(view: View) {
+        val recommendationDialog: DialogFragment = RecommendationDialog()
+        recommendationDialog.show(fragmentManager, "recommendation")
     }
 }

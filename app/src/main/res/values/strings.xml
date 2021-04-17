@@ -39,4 +39,15 @@
     <string name="next">Next</string>
     <string name="you_selected_x_movies">You selected %1$d movies.</string>
     <string name="please_give_us_a_review_for_movies_you_have_picked">Please give us a review for movies you have picked!</string>
+    <string name="add">Add</string>
+    <string name="description"><u>Description</u></string>
+    <string name="pick_me">Pick Me!</string>
+    <string name="remember">Do you like %1$s?</string>
+    <string name="add_review">Please, don\'t forget to give it a review!</string>
+    <string name="movie_added">The movie is added</string>
+    <string name="please_rate_the_movie_you_just_watched">Please, rate the movie you just watched!</string>
+    <string name="we_think_you_have_to_watch_these_movies">We think you have to watch these movies!</string>
+    <string name="done">Done</string>
+    <string name="thank">Thank you!</string>
+
 </resources>
