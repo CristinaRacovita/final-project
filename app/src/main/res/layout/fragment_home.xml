@@ -147,6 +147,7 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size"
+            android:onClick="@{(view) -> homeModel.goToAllMovies(view)}"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
 

@@ -4,8 +4,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavDirections
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.example.moviepicker.R
 import com.example.moviepicker.databinding.ActivityMainBinding
+import com.example.moviepicker.presentation.fragment.HomeFragmentDirections
 import com.example.moviepicker.presentation.viewModelFactory.MainViewModelFactory
 import com.example.moviepicker.presentation.viewmodel.MainViewModel
 

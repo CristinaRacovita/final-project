@@ -3,7 +3,6 @@ package com.example.moviepicker.presentation.viewmodel
 import android.content.SharedPreferences
 import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.moviepicker.presentation.activity.SignInActivity

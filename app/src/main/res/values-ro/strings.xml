@@ -46,7 +46,13 @@
     <string name="add_review">Te rugăm să nu uiți să-i dai o notă!</string>
     <string name="movie_added">Filmul este adăugat</string>
     <string name="please_rate_the_movie_you_just_watched">Te rugăm să dai o notă filmului pe care tocmai l-ai văzut!</string>
-    <string name="we_think_you_have_to_watch_these_movies">Credeam că aceste filme ți-ar plăcea!</string>
+    <string name="we_think_you_have_to_watch_these_movies">Credem că aceste filme ți-ar plăcea!</string>
     <string name="done">Gata</string>
     <string name="thank">Mulțumim!</string>
+    <string name="your_movies">Filmele Tale</string>
+    <string name="add_new_movie_you_watched">Adauga review la un film pe care l-ai vazut</string>
+    <string name="lang">ro</string>
+    <string name="description_not_available">Descriere indisponibila.</string>
+    <string name="watch_party_name_is">Watch Party Name is...</string>
+    <string name="plase_select_at_least_one_movie">Please select at least one movie you watched!</string>
 </resources>

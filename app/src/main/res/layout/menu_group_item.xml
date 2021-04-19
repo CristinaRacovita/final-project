@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
+
         <variable
             name="model"
             type="com.example.moviepicker.presentation.viewmodel.GroupItemViewModel" />
+
+        <variable
+            name="listener"
+            type="com.example.moviepicker.presentation.listener.GroupItemListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -11,6 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/small_margin"
+        android:onClick="@{(view) -> listener.selectUser(view,model)}"
         android:background="@drawable/round_corner">
 
         <ImageView
@@ -43,18 +49,6 @@
             app:layout_constraintStart_toEndOf="@+id/user_profile"
             app:layout_constraintTop_toTopOf="@id/user_profile"
             tools:text="Username" />
-
-        <ToggleButton
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="@dimen/small_margin"
-            android:background="@drawable/custom_toggle"
-            android:checked="@={model.isChecked}"
-            android:onClick="@{(view) -> model.selectUser(view,model, model.isChecked)}"
-            android:textColor="@android:color/transparent"
-            app:layout_constraintBottom_toBottomOf="@id/username_textView"
-            app:layout_constraintStart_toEndOf="@id/username_textView"
-            app:layout_constraintTop_toTopOf="@id/username_textView" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,14 +6,20 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviepicker.presentation.adapter.CreateGroupAdapter
+import com.example.moviepicker.presentation.listener.GroupItemListener
 import com.example.moviepicker.presentation.viewmodel.GroupItemViewModel
 import java.util.*
 
 class GroupMenuBinderAdapter {
     companion object {
-        @BindingAdapter("items", "progressBar")
+        @BindingAdapter("items", "progressBar", "listener")
         @JvmStatic
-        fun setItems(recyclerView: RecyclerView, groupItems: List<GroupItemViewModel>, progressBar: ProgressBar) {
+        fun setItems(
+            recyclerView: RecyclerView,
+            groupItems: List<GroupItemViewModel>,
+            progressBar: ProgressBar,
+            listener: GroupItemListener?
+        ) {
             var adapter = recyclerView.adapter
             if (adapter == null && groupItems.isNotEmpty()) {
                 adapter = CreateGroupAdapter(groupItems)
@@ -21,6 +27,11 @@ class GroupMenuBinderAdapter {
                 val layoutManager: RecyclerView.LayoutManager =
                     GridLayoutManager(recyclerView.context, 2)
                 recyclerView.layoutManager = layoutManager
+            }
+
+            if (adapter != null && listener != null) {
+                adapter as CreateGroupAdapter
+                adapter.updateListener(listener)
             }
 
             changeProgressBarVisibility(groupItems, progressBar)

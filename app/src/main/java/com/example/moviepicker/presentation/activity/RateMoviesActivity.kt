@@ -14,6 +14,7 @@ import com.example.moviepicker.domain.mediator.MovieMediator
 import com.example.moviepicker.domain.mediator.RatingMediator
 import com.example.moviepicker.domain.useCase.AddRatingsUseCase
 import com.example.moviepicker.domain.useCase.FetchMovieDetailsUseCase
+import com.example.moviepicker.presentation.activity.RegisterActivity.Companion.isWatched
 import com.example.moviepicker.presentation.viewModelFactory.RateMoviesViewModelFactory
 import com.example.moviepicker.presentation.viewmodel.DisplayMovieItemViewModel
 import com.example.moviepicker.presentation.viewmodel.RateMoviesViewModel
@@ -56,8 +57,13 @@ class RateMoviesActivity : AppCompatActivity() {
 
         rateMoviesViewModel.navigationLiveData.observe(this, { myClass ->
             myClass?.let {
-                startActivity(Intent(this, myClass))
-                sharedPreferences.edit().putBoolean(rated_tag, true).apply()
+                val intent = Intent(this, myClass)
+                startActivity(intent)
+
+                if (myClass == MainActivity::class.java) {
+                    sharedPreferences.edit().putBoolean(rated_tag, true).apply()
+                }
+
                 rateMoviesViewModel.navigationLiveData.value = null
                 finish()
             }

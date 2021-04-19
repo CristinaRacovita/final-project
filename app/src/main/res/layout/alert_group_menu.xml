@@ -17,6 +17,22 @@
         android:clipToPadding="false"
         android:paddingBottom="@dimen/button_top_margin">
 
+        <EditText
+            android:id="@+id/groupName_editView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_margin"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginEnd="@dimen/small_margin"
+            android:background="@drawable/round_corner"
+            android:ems="10"
+            android:hint="@string/watch_party_name_is"
+            android:inputType="text"
+            android:padding="@dimen/margin"
+            android:text="@={viewModel.groupName}"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/title_textView" />
+
         <TextView
             android:id="@+id/title_textView"
             android:layout_width="match_parent"
@@ -48,7 +64,7 @@
             android:padding="@dimen/margin"
             android:text="@={viewModel.filterText}"
             android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@id/title_textView" />
+            app:layout_constraintTop_toBottomOf="@id/groupName_editView" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv"
@@ -58,6 +74,7 @@
             app:allItems="@{viewModel.credentials}"
             app:filter="@{viewModel.filterText}"
             app:items="@{viewModel.credentials}"
+            app:listener="@{viewModel::selectUser}"
             app:layout_constraintTop_toBottomOf="@id/username_editView"
             app:progressBar="@{progressBar}"
             app:progressBar1="@{progressBar}" />
@@ -86,6 +103,7 @@
             android:shadowRadius="10"
             android:text="@string/create_a_group"
             android:textStyle="bold"
+            android:onClick="@{() -> viewModel.createGroup()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/username_editView" />

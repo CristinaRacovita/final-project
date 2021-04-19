@@ -17,6 +17,10 @@ import com.example.moviepicker.presentation.viewModelFactory.RegisterViewModelFa
 import com.example.moviepicker.presentation.viewmodel.RegisterViewModel
 
 class RegisterActivity : AppCompatActivity() {
+    companion object {
+        const val isWatched = "watched"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val remoteDataSource = UserRemoteDataSource(MoviePickerAPI.createAPI())
@@ -57,7 +61,9 @@ class RegisterActivity : AppCompatActivity() {
 
         registerViewModel.navigationLiveData.observe(this, { myClass ->
             myClass?.let {
-                startActivity(Intent(this, myClass))
+                val intent = Intent(this, myClass)
+                intent.putExtra(isWatched, false)
+                startActivity(intent)
                 if (myClass == ChooseMoviesActivity::class.java) {
                     Toast.makeText(
                         this,

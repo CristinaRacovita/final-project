@@ -22,10 +22,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/top_margin"
             android:gravity="center"
-            android:text="@string/please_select_five_movies_you_already_watched"
+            app:isWatched="@{viewModel.isWatched}"
             android:textColor="@color/red_dark"
             android:textSize="@dimen/title_size"
             android:textStyle="bold"
+            tools:text="@string/please_select_five_movies_you_already_watched"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
@@ -75,6 +76,7 @@
             android:layout_marginTop="@dimen/margin"
             android:layout_marginEnd="@dimen/top_margin"
             android:background="@drawable/ic_red_button"
+            app:isWatched="@{viewModel.isWatched}"
             app:noMovies="@{viewModel.numbersOfPickedMovies}"
             android:shadowColor="@color/black"
             android:shadowDx="1.5"

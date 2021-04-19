@@ -17,8 +17,6 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
         val homeViewModel =
             ViewModelProvider(
                 this,

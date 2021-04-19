@@ -1,6 +1,7 @@
 package com.example.moviepicker.presentation.dialog
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
@@ -42,6 +43,16 @@ class CreateGroupAlertDialog : DialogFragment() {
             )
 
         binding.viewModel = alertDialogViewModel
+
+        alertDialogViewModel.navigationLiveData.observe(this, { myClass ->
+            myClass?.let {
+                val intent = Intent(requireContext(), myClass)
+                intent.putExtra("selectedUsers", alertDialogViewModel.credentials)
+                intent.putExtra("groupName", alertDialogViewModel.groupName.get())
+                startActivity(intent)
+                alertDialogViewModel.navigationLiveData.value = null
+            }
+        })
 
         alertDialog.setView(binding.root)
 
