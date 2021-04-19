@@ -20,10 +20,14 @@ class SplashActivity : AppCompatActivity() {
 
         intent = if (logged && rated) {
             Intent(this, MainActivity::class.java)
-        } else if (logged){
+        } else if (logged) {
             Intent(this, ChooseMoviesActivity::class.java)
         } else {
             Intent(this, SignInActivity::class.java)
+        }
+
+        if (logged && !rated) {
+            intent.putExtra(RegisterActivity.isWatched, false)
         }
 
         startActivity(intent)

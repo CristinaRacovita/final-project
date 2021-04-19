@@ -1,5 +1,6 @@
 package com.example.moviepicker.presentation.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -51,6 +52,15 @@ class AllWatchedMoviesFragment : Fragment() {
             )
 
         binding.viewModel = allWatchedMoviesViewModel
+
+        allWatchedMoviesViewModel.navigationLiveData.observe(requireActivity(), { myClass ->
+            myClass?.let {
+                startActivity(Intent(requireActivity(), myClass))
+                requireActivity().finish()
+
+                allWatchedMoviesViewModel.navigationLiveData.value = null
+            }
+        })
 
         return binding.root
     }

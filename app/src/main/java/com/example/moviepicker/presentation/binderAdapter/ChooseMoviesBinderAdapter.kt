@@ -60,12 +60,30 @@ class ChooseMoviesBinderAdapter {
             textView.text = numberMovie
         }
 
-        @BindingAdapter("noMovies")
+        @BindingAdapter("noMovies", "isWatched")
         @JvmStatic
-        fun goNext(button: Button, noMovies: Int) {
-            button.isEnabled = noMovies == 5
-            button.isClickable = noMovies == 5
+        fun goNext(button: Button, noMovies: Int, isWatched: Boolean) {
+            if (isWatched) {
+                button.isEnabled = noMovies >= 1
+                button.isClickable = noMovies >= 1
+            } else {
+                button.isEnabled = noMovies == 5
+                button.isClickable = noMovies == 5
+            }
         }
+
+        @BindingAdapter("isWatched")
+        @JvmStatic
+        fun setTitleText(textView: TextView, isWatched: Boolean) {
+            val text = if (isWatched) {
+                textView.context.getString(R.string.plase_select_at_least_one_movie)
+            } else {
+                textView.context.getString(R.string.please_select_five_movies_you_already_watched)
+            }
+
+            textView.text = text
+        }
+
 
         @BindingAdapter("allItems", "filter")
         @JvmStatic

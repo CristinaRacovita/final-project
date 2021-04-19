@@ -11,6 +11,7 @@ class DetailsMovieBuilder {
                 detailsMovie.title,
                 detailsMovie.imageUrl
             )
+
         }
 
         fun toItem(detailsMovieDTO: DetailsMovieDTO): DetailsMovieItem {

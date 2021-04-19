@@ -54,4 +54,5 @@
     <string name="lang">ro</string>
     <string name="description_not_available">Descriere indisponibila.</string>
     <string name="watch_party_name_is">Watch Party Name is...</string>
+    <string name="plase_select_at_least_one_movie">Please select at least one movie you watched!</string>
 </resources>

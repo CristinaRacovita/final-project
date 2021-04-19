@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_margin="@dimen/margin"
+            android:onClick="@{() ->  viewModel.goAddMoviesPage()}"
             android:contentDescription="@string/add_new_movie_you_watched"
             android:src="@drawable/ic_add" />
 

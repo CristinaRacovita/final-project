@@ -27,4 +27,5 @@
         android:label="all_movies_button"
         tools:layout="@layout/fragment_all_watched_movies" />
 
+
 </navigation>

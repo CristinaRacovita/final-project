@@ -11,6 +11,7 @@ import com.example.moviepicker.domain.items.UserItem
 import com.example.moviepicker.domain.useCase.AddUserUseCase
 import com.example.moviepicker.domain.useCase.FetchCredentialsUseCase
 import com.example.moviepicker.presentation.activity.ChooseMoviesActivity
+import com.example.moviepicker.presentation.activity.RateMoviesActivity
 import com.example.moviepicker.presentation.activity.SignInActivity
 import java.math.BigInteger
 import java.security.MessageDigest
@@ -55,6 +56,8 @@ class RegisterViewModel(
                 )
             ) {
                 sharedPreferences.edit().putBoolean(auth_tag, true).apply()
+                sharedPreferences.edit().putBoolean(RateMoviesActivity.rated_tag, false).apply()
+
                 val md = MessageDigest.getInstance("MD5")
                 val md5Password =
                     BigInteger(1, md.digest(livePassword.get()!!.toByteArray())).toString(16)

@@ -19,11 +19,12 @@ class RateMoviesViewModel(
     detailsUseCase: FetchMovieDetailsUseCase,
     private val rateUseCase: AddRatingsUseCase,
     val sharedPreferences: SharedPreferences,
-    movies: List<DisplayMovieItemViewModel>
+    movies: List<DisplayMovieItemViewModel>,
 ) : ViewModel(), RateListener {
     var pickedMovies: ObservableArrayList<PickedMovieItemViewModel> = ObservableArrayList()
     var navigationLiveData = MutableLiveData<Class<*>>()
     var noOfRatedMovies = ObservableInt()
+
 
     init {
         var ids = ""
@@ -38,11 +39,11 @@ class RateMoviesViewModel(
                 val elements: MutableList<PickedMovieItemViewModel> = ArrayList()
 
                 for (movieItem: DetailsMovieItem? in items) {
-                    val movieItemViewModel = PickedMovieItemViewModel()
-                    movieItemViewModel.movieTitle.set(movieItem?.title)
-                    movieItemViewModel.imageUrl.set(movieItem?.imageUrl)
-                    movieItem?.id?.let { movieItemViewModel.movieId.set(it) }
-                    elements.add(movieItemViewModel)
+                        val movieItemViewModel = PickedMovieItemViewModel()
+                        movieItemViewModel.movieTitle.set(movieItem?.title)
+                        movieItemViewModel.imageUrl.set(movieItem?.imageUrl)
+                        movieItem?.id?.let { movieItemViewModel.movieId.set(it) }
+                        elements.add(movieItemViewModel)
                 }
                 this.pickedMovies.addAll(
                     elements
@@ -52,7 +53,7 @@ class RateMoviesViewModel(
         }
     }
 
-    fun goMainPage() {
+    fun changePage() {
         val ratings: MutableList<RatingItem> = ArrayList()
         val currentUserId = sharedPreferences.getInt("id", -1)
 
@@ -61,8 +62,8 @@ class RateMoviesViewModel(
         }
 
         rateUseCase.addRatings(ratings)
-
         navigationLiveData.value = MainActivity::class.java
+
     }
 
     override fun rateMovie(

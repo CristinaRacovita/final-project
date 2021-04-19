@@ -51,11 +51,11 @@ class RateMovieBinderAdapter {
             }
         }
 
-        @BindingAdapter("my_rated_movies")
+        @BindingAdapter("my_rated_movies", "watched")
         @JvmStatic
-        fun checkIfRated(button: Button, numberOfMovies: Int) {
-            button.isEnabled = numberOfMovies >= 5
-            button.isClickable = numberOfMovies >= 5
+        fun checkIfRated(button: Button, numberOfMovies: Int, totalMovies: Int) {
+            button.isEnabled = numberOfMovies >= totalMovies
+            button.isClickable = numberOfMovies >= totalMovies
         }
 
         @BindingAdapter("recommended_movie")
