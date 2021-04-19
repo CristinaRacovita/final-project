@@ -10,7 +10,8 @@ class RecommendedMovieBuilder {
                 recommendedMovieItem.id,
                 recommendedMovieItem.title,
                 recommendedMovieItem.imageUrl,
-                recommendedMovieItem.description,
+                recommendedMovieItem.descriptionEn,
+                recommendedMovieItem.descriptionRo
             )
         }
 
@@ -19,7 +20,8 @@ class RecommendedMovieBuilder {
                 recommendedMovieDTO.id,
                 recommendedMovieDTO.title,
                 recommendedMovieDTO.imageUrl,
-                recommendedMovieDTO.description
+                recommendedMovieDTO.descriptionEn,
+                recommendedMovieDTO.descriptionRo
             )
         }
     }

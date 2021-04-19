@@ -60,6 +60,5 @@ class SignInActivity : AppCompatActivity() {
                 loginViewModel.navigationLiveData.value = null
             }
         })
-        delegate
     }
 }

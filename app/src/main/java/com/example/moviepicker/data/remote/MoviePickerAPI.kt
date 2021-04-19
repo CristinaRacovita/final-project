@@ -31,6 +31,9 @@ interface MoviePickerAPI {
     @GET("prediction/{id}")
     fun getRecommendedMovie(@Path("id") id: Int): Call<List<RecommendedMovieDTO>>
 
+    @GET("watchedMovies/{id}")
+    fun getWatchedMovies(@Path("id") id: Int): Call<List<WatchedMovieDTO>>
+
     companion object {
         private val BASE_URL: String
             //            get() = "https://film-server-api.herokuapp.com/"

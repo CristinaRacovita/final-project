@@ -2,10 +2,13 @@ package com.example.moviepicker.presentation.binderAdapter
 
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.moviepicker.R
+import com.example.moviepicker.domain.items.RecommendedMovieItem
 import com.example.moviepicker.presentation.adapter.RateMoviesAdapter
 import com.example.moviepicker.presentation.listener.RateListener
 import com.example.moviepicker.presentation.viewmodel.PickedMovieItemViewModel
@@ -53,6 +56,16 @@ class RateMovieBinderAdapter {
         fun checkIfRated(button: Button, numberOfMovies: Int) {
             button.isEnabled = numberOfMovies >= 5
             button.isClickable = numberOfMovies >= 5
+        }
+
+        @BindingAdapter("recommended_movie")
+        @JvmStatic
+        fun setText(textView: TextView, movie: RecommendedMovieItem?) {
+            if (textView.context.getString(R.string.lang) == "en") {
+                textView.text = movie?.descriptionEn
+            } else {
+                textView.text = movie?.descriptionRo
+            }
         }
 
     }

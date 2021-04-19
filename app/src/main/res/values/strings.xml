@@ -49,5 +49,12 @@
     <string name="we_think_you_have_to_watch_these_movies">We think you have to watch these movies!</string>
     <string name="done">Done</string>
     <string name="thank">Thank you!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="your_movies">Your Movies</string>
+    <string name="add_new_movie_you_watched">Add new movie you watched</string>
+    <string name="lang">en</string>
+    <string name="description_not_available">Description not available.</string>
+    <string name="watch_party_name_is">Watch Party Name is...</string>
 
 </resources>

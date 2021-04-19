@@ -65,8 +65,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries."
-                android:text="@{model.description}"
+                app:recommended_movie="@{model}"
                 android:textSize="@dimen/small_text"
+                android:text="@string/description_not_available"
                 android:gravity="center_horizontal"
                 android:layout_margin="@dimen/margin"
                 android:paddingStart="@dimen/margin"
@@ -82,8 +83,8 @@
                 android:background="@drawable/ic_red_button"
                 android:onClick="@{() -> listener.watchedMovie(model)}"
                 android:text="@string/pick_me"
-                app:layout_constraintEnd_toEndOf="@id/description_textView_1"
-                app:layout_constraintStart_toStartOf="@id/description_textView_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/description_textView_1" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

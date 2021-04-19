@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="model"
+            type="com.example.moviepicker.domain.items.WatchedMovieItem" />
+    </data>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,27 +21,35 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin"
-            android:textSize="@dimen/title_size"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/margin"
+            android:gravity="center_vertical"
             android:layout_weight="2"
+            android:maxLines="1"
+            android:text="@{model.title}"
+            android:textSize="@dimen/text_size"
             android:textColor="@color/red_dark"
-            tools:text="Title (Year)"/>
+            tools:text="Title (Year)" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin"
-            android:textSize="@dimen/title_size"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/small_margin"
             android:textColor="@color/red_dark"
+            android:gravity="center_vertical"
+            android:text="@{Float.toString(model.rating)}"
             android:textStyle="bold"
-            tools:text="5.0"/>
+            android:textSize="@dimen/text_size"
+            tools:text="5.0" />
 
-        <RatingBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:numStars="1"
-            android:rating="1"
-            android:clickable="false"/>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/small_margin"
+            android:gravity="center_vertical"
+            android:src="@drawable/ic_baseline_star_24" />
 
     </LinearLayout>
 </layout>
