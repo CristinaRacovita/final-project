@@ -84,13 +84,14 @@ class RegisterViewModel(
                     BigInteger(1, md.digest(livePassword.get()!!.toByteArray())).toString(16)
                         .padStart(32, '0')
 
-                val movie = addUserUseCase.addUser(
+                val user = addUserUseCase.addUser(
                     UserItem(email = liveEmail.get()!!, password = md5Password)
                 )
 
-                movie.observeForever { m ->
-                    if (m != null) {
-                        m.id?.let { sharedPreferences.edit().putInt("id", it).apply() }
+                user.observeForever { u ->
+                    if (u != null) {
+                        u.id?.let { sharedPreferences.edit().putInt("id", it).apply() }
+                        u.email?.let { sharedPreferences.edit().putString("username", it).apply() }
                     }
                 }
 

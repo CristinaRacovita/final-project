@@ -70,6 +70,7 @@ class SignInViewModel(
 
             if (isOk) {
                 sharedPreferences.edit().putBoolean(RegisterViewModel.auth_tag, true).apply()
+                sharedPreferences.edit().putString("username", liveEmail.get()).apply()
 
                 Log.d(tag, "Right Credentials")
                 navigationLiveData.value = MainActivity::class.java

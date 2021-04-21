@@ -20,6 +20,19 @@
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/button_top_margin">
 
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:onClick="@{() -> optionsViewModel.addProfileUri()}"
+                android:layout_marginTop="@dimen/margin"
+                app:layout_constraintEnd_toEndOf="@id/account_textView"
+                app:layout_constraintStart_toStartOf="@id/account_textView"
+                app:layout_constraintTop_toBottomOf="@id/account_textView"
+                app:profileImage="@{optionsViewModel.profileImageUri}"
+                app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+                app:strokeColor="@color/black"
+                app:strokeWidth="1dp" />
+
             <TextView
                 android:id="@+id/account_textView"
                 android:layout_width="match_parent"
@@ -32,12 +45,24 @@
                 android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
+            <TextView
                 android:id="@+id/profile_imageView"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="@dimen/margin"
-                android:src="@drawable/ic_user_profile"
+                android:background="@drawable/profile_image"
+                android:gravity="center"
+                android:onClick="@{() -> optionsViewModel.addProfileUri()}"
+                android:paddingEnd="@dimen/small_margin"
+                android:shadowColor="@color/black"
+                android:shadowDx="1.5"
+                android:shadowDy="1.3"
+                android:shadowRadius="10"
+                android:textColor="@color/white"
+                android:textSize="70sp"
+                app:profile="@{optionsViewModel.profileImageUri}"
+                app:usernameForInitials="@{optionsViewModel.username}"
+                tools:text="CR"
                 app:layout_constraintEnd_toEndOf="@id/account_textView"
                 app:layout_constraintStart_toStartOf="@id/account_textView"
                 app:layout_constraintTop_toBottomOf="@id/account_textView" />
@@ -50,8 +75,9 @@
                 android:layout_marginTop="@dimen/margin"
                 android:layout_marginEnd="@dimen/margin"
                 android:drawablePadding="5dp"
-                android:text="@string/username"
+                android:text="@{optionsViewModel.username}"
                 android:textSize="@dimen/text_size"
+                tools:text="Cristina"
                 app:drawableStartCompat="@drawable/ic_baseline_email_24"
                 app:layout_constraintTop_toBottomOf="@id/profile_imageView" />
 
@@ -128,7 +154,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
                 android:textStyle="bold"
-                android:onClick="@{() -> optionsViewModel.openDialog()}"
+                android:onClick="@{() -> optionsViewModel.sendEmail()}"
                 app:layout_constraintTop_toBottomOf="@id/get_help_textView" />
 
 

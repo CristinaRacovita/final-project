@@ -1,8 +1,11 @@
 package com.example.moviepicker.presentation.fragment
 
+import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +22,8 @@ import com.example.moviepicker.presentation.viewmodel.OptionsViewModel
 
 class OptionsFragment : Fragment() {
     lateinit var sharedPreferences: SharedPreferences;
+
+    private val requestCodeGallery = 1000
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,8 +59,30 @@ class OptionsFragment : Fragment() {
             }
         })
 
+        optionsViewModel.changeImage.observe(requireActivity(), { changing ->
+            changing?.let {
+                val openGalleryIntent =
+                    Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                requireActivity().startActivityFromFragment(
+                    this, openGalleryIntent,
+                    requestCodeGallery
+                )
+
+                optionsViewModel.changeImage.value = null
+            }
+        })
+
         return binding.root
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == Activity.RESULT_OK && requestCode == requestCodeGallery) {
+            val imageUri: Uri? = data?.data
+            sharedPreferences.edit().putString("profile", imageUri.toString()).apply()
 
+//            val intent = requireActivity().intent
+//            requireActivity().finish()
+//            startActivity(intent)
+        }
+    }
 }
