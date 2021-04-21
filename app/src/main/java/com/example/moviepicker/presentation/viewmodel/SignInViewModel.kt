@@ -3,6 +3,7 @@ package com.example.moviepicker.presentation.viewmodel
 import android.content.SharedPreferences
 import android.util.Log
 import android.view.View
+import android.widget.EditText
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
@@ -41,8 +42,19 @@ class SignInViewModel(
         }
     }
 
-    fun checkCredentials(view: View) {
+    fun checkCredentials(usernameView: View, passwordView: View) {
         var isOk = false
+        if (liveEmail.get() == null || liveEmail.get()!!.isEmpty()) {
+            usernameView as EditText
+            usernameView.error = "Username Required"
+            return
+        }
+
+        if (livePassword.get() == null || livePassword.get()!!.isEmpty()) {
+            passwordView as EditText
+            passwordView.error = "Password Required"
+            return
+        }
 
         if (!livePassword.get().isNullOrEmpty() && !liveEmail.get().isNullOrEmpty()) {
             for (user: UserItem in credentials) {

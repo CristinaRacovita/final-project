@@ -90,7 +90,7 @@
                 android:layout_marginTop="@dimen/button_top_margin"
                 android:layout_marginEnd="@dimen/top_margin"
                 android:background="@drawable/ic_red_button"
-                android:onClick="@{(view) -> viewModel.addNewUser(view)}"
+                android:onClick="@{() -> viewModel.addNewUser(emailEditView, passwordEditView)}"
                 android:shadowColor="@color/black"
                 android:shadowDx="1.5"
                 android:shadowDy="1.3"

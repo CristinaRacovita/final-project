@@ -2,6 +2,7 @@ package com.example.moviepicker.presentation.viewmodel
 
 import android.content.SharedPreferences
 import android.view.View
+import android.widget.EditText
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
@@ -46,7 +47,27 @@ class RegisterViewModel(
         const val auth_tag = "auth"
     }
 
-    fun addNewUser(view: View) {
+    fun addNewUser(usernameView: View, passwordView: View) {
+        if (liveEmail.get() == null || liveEmail.get()!!.isEmpty()) {
+            usernameView as EditText
+            usernameView.error = "Username Required"
+            return
+        } else if (liveEmail.get()!!.length < 5) {
+            usernameView as EditText
+            usernameView.error = "Username too short"
+            return
+        }
+
+        if (livePassword.get() == null || livePassword.get()!!.isEmpty()) {
+            passwordView as EditText
+            passwordView.error = "Password Required"
+            return
+        } else if (livePassword.get()!!.length < 5) {
+            passwordView as EditText
+            passwordView.error = "Password too short"
+            return
+        }
+
         if (!livePassword.get().isNullOrEmpty() && !liveEmail.get().isNullOrEmpty()) {
             if (!existsAlready(
                     UserItem(
