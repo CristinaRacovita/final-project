@@ -66,8 +66,8 @@ class GroupMenuBinderAdapter {
             }
         }
 
-        private fun changeProgressBarVisibility(groupItems: List<GroupItemViewModel>, progressBar: ProgressBar) {
-            if (groupItems.isEmpty()) {
+        fun changeProgressBarVisibility(items: List<Any>, progressBar: ProgressBar) {
+            if (items.isEmpty()) {
                 progressBar.visibility = View.VISIBLE
             } else {
                 progressBar.visibility = View.INVISIBLE

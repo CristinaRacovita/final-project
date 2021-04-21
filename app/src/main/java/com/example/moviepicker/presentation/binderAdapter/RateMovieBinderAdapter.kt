@@ -2,6 +2,7 @@ package com.example.moviepicker.presentation.binderAdapter
 
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,12 +26,13 @@ class RateMovieBinderAdapter {
             }
         }
 
-        @BindingAdapter("rated_movies", "listener")
+        @BindingAdapter("rated_movies", "listener", "progressBarRate")
         @JvmStatic
         fun setItems(
             recyclerView: RecyclerView,
             items: List<PickedMovieItemViewModel>?,
-            rateListener: RateListener?
+            rateListener: RateListener?,
+            progressBarRate: ProgressBar
         ) {
             var adapter = recyclerView.adapter
             if (adapter == null) {
@@ -43,6 +45,7 @@ class RateMovieBinderAdapter {
             if (items != null) {
                 adapter as RateMoviesAdapter
                 adapter.updateItems(items)
+                GroupMenuBinderAdapter.changeProgressBarVisibility(items, progressBarRate)
             }
 
             if (items != null && rateListener != null) {
