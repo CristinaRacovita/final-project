@@ -8,13 +8,8 @@
             type="com.example.moviepicker.presentation.viewmodel.RecommendedMovieViewModel" />
     </data>
 
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-
         <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -27,17 +22,17 @@
                 android:gravity="center"
                 android:textColor="@color/red_dark"
                 android:layout_marginTop="@dimen/small_margin"
-                android:layout_marginBottom="@dimen/margin"/>
+                android:layout_marginBottom="@dimen/margin" />
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recommendation_movies_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:foregroundGravity="center"
-                app:listener="@{viewModel::watchedMovie}"
-                app:items="@{viewModel.recommendedMovies}" />
+                android:scrollbars="vertical"
+                android:scrollbarStyle="outsideInset"
+                app:items="@{viewModel.recommendedMovies}"
+                app:listener="@{viewModel::watchedMovie}" />
 
         </LinearLayout>
-    </ScrollView>
-
 </layout>
