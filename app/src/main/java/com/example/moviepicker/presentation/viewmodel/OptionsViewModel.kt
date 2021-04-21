@@ -5,9 +5,16 @@ import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkManager
+import com.example.moviepicker.domain.workers.EmailWorker
 import com.example.moviepicker.presentation.activity.SignInActivity
+import java.util.concurrent.TimeUnit
 
-class OptionsViewModel(val sharedPreferences: SharedPreferences) : ViewModel() {
+class OptionsViewModel(
+    val sharedPreferences: SharedPreferences,
+    private val workManager: WorkManager,
+) : ViewModel() {
     var navigationLiveData = MutableLiveData<Class<*>>()
 
     companion object {
@@ -27,5 +34,16 @@ class OptionsViewModel(val sharedPreferences: SharedPreferences) : ViewModel() {
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
+    }
+
+    fun openDialog() {
+        val sendEmailWorkRequest =
+            OneTimeWorkRequest.Builder(EmailWorker::class.java)
+                .setInitialDelay(1, TimeUnit.SECONDS)
+                .build()
+
+        workManager.enqueue(
+            sendEmailWorkRequest
+        )
     }
 }

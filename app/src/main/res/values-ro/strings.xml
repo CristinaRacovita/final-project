@@ -55,4 +55,12 @@
     <string name="description_not_available">Descriere indisponibila.</string>
     <string name="watch_party_name_is">Watch Party Name is...</string>
     <string name="plase_select_at_least_one_movie">Please select at least one movie you watched!</string>
+    <string name="tell_us_what_s_wrong">Tell us what\'s wrong!</string>
+    <string name="from_someone_yahoo_com">FROM: someone@yahoo.com</string>
+    <string name="message">Message</string>
+    <string name="hi_i_have_this_problem">Hi! I have this problem ..</string>
+    <string name="send">SEND</string>
+    <string name="email_sent">The email was sent</string>
+    <string name="message_required">Message Required</string>
+    <string name="invalid_email">Email is invalid!</string>
 </resources>

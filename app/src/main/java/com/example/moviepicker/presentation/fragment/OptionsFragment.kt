@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.work.WorkManager
 import com.example.moviepicker.R
 import com.example.moviepicker.databinding.FragmentOptionsBinding
 import com.example.moviepicker.presentation.viewModelFactory.OptionsViewModelFactory
@@ -32,7 +33,10 @@ class OptionsFragment : Fragment() {
         val optionsViewModel =
             ViewModelProvider(
                 this,
-                OptionsViewModelFactory(sharedPreferences)
+                OptionsViewModelFactory(
+                    sharedPreferences,
+                    WorkManager.getInstance(requireActivity())
+                )
             ).get(
                 OptionsViewModel::class.java
             )

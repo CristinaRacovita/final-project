@@ -55,18 +55,6 @@
                 app:drawableStartCompat="@drawable/ic_baseline_email_24"
                 app:layout_constraintTop_toBottomOf="@id/profile_imageView" />
 
-            <TextView
-                android:id="@+id/birthday_textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin"
-                android:layout_marginTop="@dimen/margin"
-                android:layout_marginEnd="@dimen/margin"
-                android:drawablePadding="5dp"
-                android:text="@string/birthday"
-                android:textSize="@dimen/text_size"
-                app:drawableStartCompat="@drawable/ic_baseline_calendar_today_24"
-                app:layout_constraintTop_toBottomOf="@id/username_textView" />
 
             <Button
                 android:id="@+id/log_out_button"
@@ -84,7 +72,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/birthday_textView" />
+                app:layout_constraintTop_toBottomOf="@id/username_textView" />
 
             <TextView
                 android:id="@+id/phone_textView"
@@ -140,6 +128,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size"
                 android:textStyle="bold"
+                android:onClick="@{() -> optionsViewModel.openDialog()}"
                 app:layout_constraintTop_toBottomOf="@id/get_help_textView" />
 
 
