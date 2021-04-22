@@ -18,10 +18,8 @@
     <string name="log_out">Iesi din cont</string>
     <string name="create_a_group">Creaza un cont</string>
     <string name="search">Cautare..</string>
-    <string name="create">Creaza</string>
     <string name="watch_together">Hai sa vedem impreuna un film!</string>
     <string name="home">Acasa</string>
-    <string name="settings">Setari</string>
     <string name="my_parties">Petrecerile mele</string>
     <string name="what_movie_should_i_see_next">Ce film ar trebui sa vad acum?</string>
     <string name="all_my_watched_movies">Toate filmele pe care le-am vazut</string>
@@ -31,15 +29,11 @@
     <string name="phone"><u>Telefon</u></string>
     <string name="get_help"><u>Ai nevoie de ajutor?</u></string>
     <string name="contact_us">Contactează-ne</string>
-    <string name="language">Limba:</string>
     <string name="dark_mode">Mod întunecat</string>
-    <string name="birthday">Zi de naștere</string>
-    <string name="username">Nume de utilizator</string>
     <string name="please_select_five_movies_you_already_watched">Te rugăm să alegi cinci filme pe care deja le-ai văzut!</string>
     <string name="next">Continuă</string>
     <string name="you_selected_x_movies">Ai selectat %1$d filme.</string>
     <string name="please_give_us_a_review_for_movies_you_have_picked">Te rugăm să ne zici cât de mult ți-au plăcute filmele pe care le-ai ales!</string>
-    <string name="add">Adaugă</string>
     <string name="description"><u>Descriere</u></string>
     <string name="pick_me">Alege-mă pe mine!</string>
     <string name="remember">Ți-a plăcut %1$s?</string>
@@ -53,14 +47,6 @@
     <string name="add_new_movie_you_watched">Adauga review la un film pe care l-ai vazut</string>
     <string name="lang">ro</string>
     <string name="description_not_available">Descriere indisponibila.</string>
-    <string name="watch_party_name_is">Watch Party Name is...</string>
-    <string name="plase_select_at_least_one_movie">Please select at least one movie you watched!</string>
-    <string name="tell_us_what_s_wrong">Tell us what\'s wrong!</string>
-    <string name="from_someone_yahoo_com">FROM: someone@yahoo.com</string>
-    <string name="message">Message</string>
-    <string name="hi_i_have_this_problem">Hi! I have this problem ..</string>
-    <string name="send">SEND</string>
-    <string name="email_sent">The email was sent</string>
-    <string name="message_required">Message Required</string>
-    <string name="invalid_email">Email is invalid!</string>
+    <string name="watch_party_name_is">Numele grupului este…</string>
+    <string name="plase_select_at_least_one_movie">Te rugăm să selectezi cel puțin un film!</string>
 </resources>

@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import androidx.work.WorkManager
 import com.example.moviepicker.R
 import com.example.moviepicker.databinding.FragmentOptionsBinding
@@ -34,8 +36,6 @@ class OptionsFragment : Fragment() {
                 getString(R.string.preference_file_key),
                 AppCompatActivity.MODE_PRIVATE
             )
-
-//        sharedPreferences.edit().putString("profile", "").apply()
 
         val optionsViewModel =
             ViewModelProvider(
@@ -85,9 +85,8 @@ class OptionsFragment : Fragment() {
             val imageUri: Uri? = data?.data
             sharedPreferences.edit().putString("profile", imageUri.toString()).apply()
 
-//            val intent = requireActivity().intent
-//            requireActivity().finish()
-//            startActivity(intent)
+            val action: NavDirections = OptionsFragmentDirections.actionSettingsActionSelf()
+            findNavController().navigate(action)
         }
     }
 }
