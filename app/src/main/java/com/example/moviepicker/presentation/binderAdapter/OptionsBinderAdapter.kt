@@ -1,17 +1,14 @@
 package com.example.moviepicker.presentation.binderAdapter
 
 import android.content.SharedPreferences
-import android.graphics.ImageDecoder
-import android.net.Uri
-import android.os.Build
-import android.provider.MediaStore
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.widget.SwitchCompat
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
+import com.example.moviepicker.data.remote.MoviePickerAPI
 import com.example.moviepicker.presentation.viewmodel.OptionsViewModel
 import com.google.android.material.imageview.ShapeableImageView
-import java.io.IOException
 import java.util.*
 
 
@@ -29,8 +26,8 @@ class OptionsBinderAdapter {
 
         @BindingAdapter("usernameForInitials", "profile")
         @JvmStatic
-        fun takeInitials(textView: TextView, usernameForInitials: String, profile: String) {
-            if (profile != "") {
+        fun takeInitials(textView: TextView, usernameForInitials: String, profile: String?) {
+            if (profile != null) {
                 textView.visibility = View.INVISIBLE
             } else {
                 textView.visibility = View.VISIBLE
@@ -40,28 +37,14 @@ class OptionsBinderAdapter {
 
         @BindingAdapter("profileImage")
         @JvmStatic
-        fun showProfileImage(shapeDrawable: ShapeableImageView, profileImage: String) {
-            if (profileImage != "") {
-                try {
-                    val imageUri = Uri.parse(profileImage)
-                    val bitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                        val src: ImageDecoder.Source = ImageDecoder.createSource(
-                            shapeDrawable.context.contentResolver,
-                            imageUri
-                        )
-                        ImageDecoder.decodeBitmap(src)
-                    } else {
-                        @Suppress("DEPRECATION")
-                        MediaStore.Images.Media.getBitmap(
-                            shapeDrawable.context.contentResolver,
-                            imageUri
-                        )
-                    }
-                    shapeDrawable.setImageBitmap(bitmap)
-                    shapeDrawable.visibility = View.VISIBLE
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                }
+        fun showProfileImage(shapeDrawable: ShapeableImageView, profileImage: String?) {
+            if (profileImage != null) {
+                Glide.with(shapeDrawable.context)
+                    .load(MoviePickerAPI.BASE_URL + profileImage)
+                    .into(shapeDrawable)
+
+                shapeDrawable.visibility = View.VISIBLE
+
             } else {
                 shapeDrawable.visibility = View.INVISIBLE
             }

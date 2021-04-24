@@ -95,7 +95,7 @@
                 android:layout_marginBottom="@dimen/button_top_margin"
                 android:background="@drawable/ic_red_button"
                 android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
-                android:onClick="@{(view) -> optionsViewModel.logout(view)}"
+                android:onClick="@{() -> optionsViewModel.logout()}"
                 android:text="@string/log_out"
                 android:textAllCaps="false"
                 android:textColor="@color/white"

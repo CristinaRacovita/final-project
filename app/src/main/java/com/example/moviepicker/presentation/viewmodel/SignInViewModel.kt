@@ -55,7 +55,7 @@ class SignInViewModel(
             passwordView.error = "Password Required"
             return
         }
-
+        var id = -1
         if (!livePassword.get().isNullOrEmpty() && !liveEmail.get().isNullOrEmpty()) {
             for (user: UserItem in credentials) {
                 val md = MessageDigest.getInstance("MD5")
@@ -64,6 +64,7 @@ class SignInViewModel(
                         .padStart(32, '0')
                 if (liveEmail.get() == user.email && md5Password == user.password) {
                     isOk = true
+                    id = user.id!!
                     break
                 }
             }
@@ -71,6 +72,7 @@ class SignInViewModel(
             if (isOk) {
                 sharedPreferences.edit().putBoolean(RegisterViewModel.auth_tag, true).apply()
                 sharedPreferences.edit().putString("username", liveEmail.get()).apply()
+                sharedPreferences.edit().putInt("id", id).apply()
 
                 Log.d(tag, "Right Credentials")
                 navigationLiveData.value = MainActivity::class.java
