@@ -8,6 +8,6 @@ import com.example.moviepicker.data.WatchedMovieDTO
 interface MovieRepository {
     fun getMoviesForDisplay(): List<DisplayMovieDTO>
     fun getDetailsForPickedMovies(ids: String): List<DetailsMovieDTO>
-    fun getRecommendedMovie(id: Int, genre: String, year: String): List<RecommendedMovieDTO>
+    fun getRecommendedMovie(id: Int, genre: String?, year: String?): List<RecommendedMovieDTO>
     fun getWatchedMovies(id: Int): List<WatchedMovieDTO>
 }

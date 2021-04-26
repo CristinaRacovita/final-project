@@ -19,11 +19,14 @@ class PredictionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
+        val genresArray = resources.getStringArray(R.array.genres)
+
         val viewModel =
             ViewModelProvider(
                 this,
                 PredictionViewModelFactory(
-                    requireActivity().supportFragmentManager
+                    requireActivity().supportFragmentManager,
+                    genresArray
                 )
             ).get(
                 PredictionViewModel::class.java

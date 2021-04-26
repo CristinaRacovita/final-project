@@ -45,12 +45,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin"
+            android:selectedItemPosition="@={viewModel.yearItemPosition}"
             app:layout_constraintBottom_toBottomOf="@id/release_year_textView"
             app:layout_constraintStart_toEndOf="@id/release_year_textView"
             app:layout_constraintTop_toTopOf="@id/release_year_textView"
-            app:years="@{viewModel.type}" />
-
-        <!--        android:onItemSelected="@{(parent,view,pos,id)->viewModel.onSelectItem(parent,view,pos,id)}"-->
+            app:array="@{viewModel.yearsArray}" />
 
         <TextView
             android:id="@+id/genre_textView"
@@ -69,10 +68,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin"
+            android:selectedItemPosition="@={viewModel.genreItemPosition}"
             app:layout_constraintBottom_toBottomOf="@id/genre_textView"
             app:layout_constraintStart_toEndOf="@id/genre_textView"
             app:layout_constraintTop_toTopOf="@id/genre_textView"
-            app:genres="@{viewModel.type}" />
+            app:array="@{viewModel.genresArray}" />
 
 
         <Button
