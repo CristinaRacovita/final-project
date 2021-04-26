@@ -33,7 +33,7 @@ class AllWatchedMoviesBinderAdapter {
             }
         }
 
-        private fun changeProgressBarVisibility(items: List<Any>, progressBar: ProgressBar) {
+        fun changeProgressBarVisibility(items: List<Any>, progressBar: ProgressBar) {
             if (items.isEmpty()) {
                 progressBar.visibility = View.VISIBLE
             } else {

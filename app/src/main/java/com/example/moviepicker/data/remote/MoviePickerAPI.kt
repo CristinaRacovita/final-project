@@ -27,7 +27,11 @@ interface MoviePickerAPI {
     fun rateMovies(@Body ratings: List<RatingDTO>): Call<List<RatingDTO>>
 
     @GET("/prediction/{id}")
-    fun getRecommendedMovie(@Path("id") id: Int): Call<List<RecommendedMovieDTO>>
+    fun getRecommendedMovie(
+        @Path("id") id: Int,
+        @Query("genre") genre: String,
+        @Query("year") year: String
+    ): Call<List<RecommendedMovieDTO>>
 
     @GET("/watchedMovies/{id}")
     fun getWatchedMovies(@Path("id") id: Int): Call<List<WatchedMovieDTO>>

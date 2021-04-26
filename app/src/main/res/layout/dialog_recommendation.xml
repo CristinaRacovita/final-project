@@ -24,6 +24,23 @@
                 android:layout_marginTop="@dimen/small_margin"
                 android:layout_marginBottom="@dimen/margin" />
 
+            <TextView
+                android:id="@+id/message_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="200dp"
+                android:gravity="center"
+                android:textColor="@color/red_light"
+                android:text="@string/this_could_take_a_while"
+                android:textSize="@dimen/text_size" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="220dp" />
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recommendation_movies_rv"
@@ -31,6 +48,8 @@
                 android:layout_height="wrap_content"
                 android:scrollbars="vertical"
                 android:scrollbarStyle="outsideInset"
+                app:textView="@{messageTextView}"
+                app:progressBarRecommended="@{progressBar}"
                 app:items="@{viewModel.recommendedMovies}"
                 app:listener="@{viewModel::watchedMovie}" />
 

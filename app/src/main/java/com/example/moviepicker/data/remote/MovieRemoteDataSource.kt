@@ -24,8 +24,12 @@ class MovieRemoteDataSource(private val api: MoviePickerAPI) : MovieRepository {
         return Collections.emptyList()
     }
 
-    override fun getRecommendedMovie(id: Int): List<RecommendedMovieDTO> {
-        val movies = api.getRecommendedMovie(id).execute().body()
+    override fun getRecommendedMovie(
+        id: Int,
+        genre: String,
+        year: String
+    ): List<RecommendedMovieDTO> {
+        val movies = api.getRecommendedMovie(id, genre, year).execute().body()
         if (movies != null) {
             return movies
         }

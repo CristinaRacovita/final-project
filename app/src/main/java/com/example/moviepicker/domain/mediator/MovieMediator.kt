@@ -49,10 +49,14 @@ class MovieMediator(private val remoteRepository: MovieRepository) {
         return pickedMovies
     }
 
-    fun getRecommendedMovie(id: Int): MutableLiveData<List<RecommendedMovieItem>> {
+    fun getRecommendedMovie(
+        id: Int,
+        genre: String,
+        year: String
+    ): MutableLiveData<List<RecommendedMovieItem>> {
         executorService.execute {
             recommendedMovies.postValue(
-                remoteRepository.getRecommendedMovie(id).stream()
+                remoteRepository.getRecommendedMovie(id, genre, year).stream()
                     .map(RecommendedMovieBuilder::toItem).collect(Collectors.toList())
             )
         }

@@ -48,5 +48,10 @@
     <string name="lang">ro</string>
     <string name="description_not_available">Descriere indisponibila.</string>
     <string name="watch_party_name_is">Numele grupului este…</string>
-    <string name="plase_select_at_least_one_movie">Te rugăm să selectezi cel puțin un film!</string>
+    <string name="please_select_at_least_one_movie">Te rugăm să selectezi cel puțin un film!</string>
+    <string name="do_you_have_a_preference">Do you have a preference?</string>
+    <string name="release_year_after">Release Year After:</string>
+    <string name="genre">Genre:</string>
+    <string name="get_recommendation">GET RECOMMENDATION</string>
+    <string name="this_could_take_a_while">This could take a while</string>
 </resources>

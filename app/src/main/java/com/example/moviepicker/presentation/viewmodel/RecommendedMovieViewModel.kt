@@ -28,7 +28,7 @@ class RecommendedMovieViewModel(
     init {
         val currentUserId = sharedPreferences.getInt("id", -1)
         val liveRecommendation: LiveData<List<RecommendedMovieItem>> =
-            getRecommendedMovieUseCase.getRecommended(currentUserId)
+            getRecommendedMovieUseCase.getRecommended(currentUserId, "Action", "1920")
 
         liveRecommendation.observeForever { movies: List<RecommendedMovieItem>? ->
             if (movies != null) {

@@ -80,7 +80,7 @@ class ChooseMoviesBinderAdapter {
         @JvmStatic
         fun setTitleText(textView: TextView, isWatched: Boolean) {
             val text = if (isWatched) {
-                textView.context.getString(R.string.plase_select_at_least_one_movie)
+                textView.context.getString(R.string.please_select_at_least_one_movie)
             } else {
                 textView.context.getString(R.string.please_select_five_movies_you_already_watched)
             }
