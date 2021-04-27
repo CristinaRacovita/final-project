@@ -31,7 +31,7 @@ class RegisterViewModel(
     var empty = MutableLiveData<Boolean?>()
 
     init {
-        val liveItems: LiveData<List<UserItem>> = fetchCredentialsUseCase.getCredentials()
+        val liveItems: LiveData<List<UserItem>> = fetchCredentialsUseCase.getUsers()
 
         liveItems.observeForever { items: List<UserItem?>? ->
             if (items != null) {

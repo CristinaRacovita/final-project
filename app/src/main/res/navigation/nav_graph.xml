@@ -37,6 +37,10 @@
         android:name="com.example.moviepicker.presentation.fragment.PredictionFragment"
         android:label="fragment_prediction"
         tools:layout="@layout/fragment_prediction" />
+    <activity
+        android:id="@+id/groupActivity"
+        android:name="com.example.moviepicker.presentation.activity.GroupActivity"
+        android:label="GroupActivity" />
 
 
 </navigation>

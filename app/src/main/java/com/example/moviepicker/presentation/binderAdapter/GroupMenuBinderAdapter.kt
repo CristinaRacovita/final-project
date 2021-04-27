@@ -2,9 +2,11 @@ package com.example.moviepicker.presentation.binderAdapter
 
 import android.view.View
 import android.widget.ProgressBar
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.moviepicker.R
 import com.example.moviepicker.presentation.adapter.CreateGroupAdapter
 import com.example.moviepicker.presentation.listener.GroupItemListener
 import com.example.moviepicker.presentation.viewmodel.GroupItemViewModel
@@ -63,6 +65,16 @@ class GroupMenuBinderAdapter {
             if (filter == "" && recyclerView.adapter != null) {
                 val adapter = recyclerView.adapter as CreateGroupAdapter
                 adapter.updateItems(allGroupItems)
+            }
+        }
+
+        @BindingAdapter("selected")
+        @JvmStatic
+        fun colorToggle(constraintLayout: ConstraintLayout, selected: Boolean) {
+            if (selected) {
+                constraintLayout.setBackgroundColor(constraintLayout.context.getColor(R.color.red))
+            } else {
+                constraintLayout.setBackgroundColor(constraintLayout.context.getColor(R.color.grey))
             }
         }
 

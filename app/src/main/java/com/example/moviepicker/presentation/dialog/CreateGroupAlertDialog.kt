@@ -45,9 +45,12 @@ class CreateGroupAlertDialog : DialogFragment() {
         binding.viewModel = alertDialogViewModel
 
         alertDialogViewModel.navigationLiveData.observe(this, { myClass ->
+
             myClass?.let {
                 val intent = Intent(requireContext(), myClass)
-                intent.putExtra("selectedUsers", alertDialogViewModel.credentials)
+                intent.putExtra(
+                    "selectedUsers", alertDialogViewModel.selectedUsers
+                )
                 intent.putExtra("groupName", alertDialogViewModel.groupName.get())
                 startActivity(intent)
                 alertDialogViewModel.navigationLiveData.value = null

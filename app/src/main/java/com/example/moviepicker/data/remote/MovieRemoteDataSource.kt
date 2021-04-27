@@ -1,9 +1,9 @@
 package com.example.moviepicker.data.remote
 
-import com.example.moviepicker.data.DetailsMovieDTO
-import com.example.moviepicker.data.DisplayMovieDTO
-import com.example.moviepicker.data.RecommendedMovieDTO
-import com.example.moviepicker.data.WatchedMovieDTO
+import com.example.moviepicker.data.dtos.DetailsMovieDTO
+import com.example.moviepicker.data.dtos.DisplayMovieDTO
+import com.example.moviepicker.data.dtos.RecommendedMovieDTO
+import com.example.moviepicker.data.dtos.WatchedMovieDTO
 import com.example.moviepicker.domain.repository.MovieRepository
 import java.util.*
 

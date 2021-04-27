@@ -1,6 +1,6 @@
 package com.example.moviepicker.domain.builder
 
-import com.example.moviepicker.data.WatchedMovieDTO
+import com.example.moviepicker.data.dtos.WatchedMovieDTO
 import com.example.moviepicker.domain.items.WatchedMovieItem
 
 class WatchedMovieBuilder {

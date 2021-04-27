@@ -1,14 +1,15 @@
 package com.example.moviepicker.data.remote
 
-import com.example.moviepicker.data.ImageDTO
-import com.example.moviepicker.data.UserDTO
+import com.example.moviepicker.data.dtos.ImageDTO
+import com.example.moviepicker.data.dtos.UserDTO
+import com.example.moviepicker.data.dtos.UserDetailsDTO
 import com.example.moviepicker.domain.repository.UserRepository
 import okhttp3.MultipartBody
 import java.util.*
 
 class UserRemoteDataSource(private val api: MoviePickerAPI) : UserRepository {
 
-    override fun getCredentials(): List<UserDTO> {
+    override fun getCredentials(): List<UserDetailsDTO> {
         val credentials = api.getCredentials().execute().body()
         if (credentials != null) {
             return credentials
@@ -36,5 +37,22 @@ class UserRemoteDataSource(private val api: MoviePickerAPI) : UserRepository {
         }
 
         throw Exception("Can't get image profile")
+    }
+
+    override fun getUsersDetails(ids: String): List<UserDetailsDTO> {
+        val usersDetails = api.getUsersDetails(ids).execute().body()
+        if (usersDetails != null) {
+            return usersDetails
+        }
+
+        return Collections.emptyList()
+    }
+
+    override fun getUsers(): List<UserDTO> {
+        val credentials = api.getUsers().execute().body()
+        if (credentials != null) {
+            return credentials
+        }
+        return Collections.emptyList()
     }
 }

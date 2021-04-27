@@ -1,4 +1,4 @@
-package com.example.moviepicker.data
+package com.example.moviepicker.data.dtos
 
 import com.google.gson.annotations.SerializedName
 

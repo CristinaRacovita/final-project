@@ -1,6 +1,6 @@
 package com.example.moviepicker.data.remote
 
-import com.example.moviepicker.data.*
+import com.example.moviepicker.data.dtos.*
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -12,7 +12,10 @@ import java.util.concurrent.TimeUnit
 
 interface MoviePickerAPI {
     @GET("/credentials")
-    fun getCredentials(): Call<List<UserDTO>>
+    fun getCredentials(): Call<List<UserDetailsDTO>>
+
+    @GET("/all_users")
+    fun getUsers(): Call<List<UserDTO>>
 
     @POST("/credentials")
     fun createNewUser(@Body userDTO: UserDTO): Call<UserDTO>
@@ -42,6 +45,9 @@ interface MoviePickerAPI {
 
     @GET("/image/{id}")
     fun getProfileImage(@Path("id") id: Int): Call<ImageDTO>
+
+    @GET("/users/{ids}")
+    fun getUsersDetails(@Path("ids") ids: String): Call<List<UserDetailsDTO>>
 
     companion object {
         const val BASE_URL: String = "http://192.168.1.10:8000"

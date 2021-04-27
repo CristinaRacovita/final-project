@@ -30,7 +30,7 @@ class SignInViewModel(
     private val tag = "SignInViewModel"
 
     init {
-        val liveItems: LiveData<List<UserItem>> = fetchCredentialsUseCase.getCredentials()
+        val liveItems: LiveData<List<UserItem>> = fetchCredentialsUseCase.getUsers()
 
         liveItems.observeForever { items: List<UserItem?>? ->
             if (items != null) {

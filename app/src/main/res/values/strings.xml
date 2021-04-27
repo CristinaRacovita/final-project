@@ -54,6 +54,7 @@
     <string name="genre">Genre:</string>
     <string name="get_recommendation">GET RECOMMENDATION</string>
     <string name="this_could_take_a_while">This could take a while</string>
+    <string name="members">Members:</string>
     <string-array name="genres">
         <item>Nothing</item>
         <item>Action</item>
