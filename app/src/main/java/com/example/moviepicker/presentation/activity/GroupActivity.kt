@@ -21,7 +21,7 @@ class GroupActivity : AppCompatActivity() {
         setContentView(R.layout.activity_group)
 
         val users = intent.getSerializableExtra("selectedUsers") as List<GroupItemViewModel>?
-        var groupName = intent.getStringExtra("groupName")
+        val groupName = intent.getStringExtra("groupName")
 
         var ids = ""
 
@@ -31,10 +31,6 @@ class GroupActivity : AppCompatActivity() {
             }
         }
 
-        if (groupName == null) {
-            groupName = "My Group Name"
-        }
-
         val remoteDataSource = UserRemoteDataSource(MoviePickerAPI.createAPI())
         val mediator = UserMediator(remoteDataSource)
 
@@ -42,7 +38,7 @@ class GroupActivity : AppCompatActivity() {
             ViewModelProvider(
                 this,
                 GroupViewModelFactory(
-                    groupName,
+                    groupName!!,
                     FetchUserDetailsUseCase(mediator),
                     ids
                 )

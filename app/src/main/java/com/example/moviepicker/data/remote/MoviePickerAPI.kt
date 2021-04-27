@@ -14,9 +14,6 @@ interface MoviePickerAPI {
     @GET("/credentials")
     fun getCredentials(): Call<List<UserDetailsDTO>>
 
-    @GET("/all_users")
-    fun getUsers(): Call<List<UserDTO>>
-
     @POST("/credentials")
     fun createNewUser(@Body userDTO: UserDTO): Call<UserDTO>
 
@@ -51,6 +48,15 @@ interface MoviePickerAPI {
 
     @GET("/users/{ids}")
     fun getUsersDetails(@Path("ids") ids: String): Call<List<UserDetailsDTO>>
+
+    @POST("/createGroup")
+    fun createGroup(@Body group: GroupDTO): Call<GroupDTO>
+
+    @POST("/addMembers")
+    fun addMembers(@Body groupUsers: List<GroupUserDTO>): Call<List<GroupUserDTO>>
+
+    @GET("/group/{id}")
+    fun getGroups(@Path("id") id: Int): Call<List<GroupDTO>>
 
     companion object {
         const val BASE_URL: String = "http://192.168.1.10:8000"
