@@ -48,11 +48,7 @@ class UserRemoteDataSource(private val api: MoviePickerAPI) : UserRepository {
         return Collections.emptyList()
     }
 
-    override fun getUsers(): List<UserDTO> {
-        val credentials = api.getUsers().execute().body()
-        if (credentials != null) {
-            return credentials
-        }
-        return Collections.emptyList()
+    override fun checkUser(userDTO: UserDTO): UserDTO {
+        return api.checkUser(userDTO).execute().body()!!
     }
 }

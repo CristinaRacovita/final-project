@@ -10,7 +10,7 @@ class FetchCredentialsUseCase(private val mediator: UserMediator) {
         return mediator.getCredentials()
     }
 
-    fun getUsers(): LiveData<List<UserItem>> {
-        return mediator.getUsers()
+    fun checkUser(userItem: UserItem): LiveData<UserItem> {
+        return mediator.checkUser(userItem)
     }
 }

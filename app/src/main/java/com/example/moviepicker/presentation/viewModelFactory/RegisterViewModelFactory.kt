@@ -4,11 +4,9 @@ import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.moviepicker.domain.useCase.AddUserUseCase
-import com.example.moviepicker.domain.useCase.FetchCredentialsUseCase
 import com.example.moviepicker.presentation.viewmodel.RegisterViewModel
 
 class RegisterViewModelFactory(
-    private val fetchCredentialsUseCase: FetchCredentialsUseCase,
     private val addUserUseCase: AddUserUseCase,
     private val sharedPreferences: SharedPreferences
 ) :
@@ -17,7 +15,6 @@ class RegisterViewModelFactory(
         if (modelClass.isAssignableFrom(RegisterViewModel::class.java)) {
             return RegisterViewModel(
                 addUserUseCase,
-                fetchCredentialsUseCase,
                 sharedPreferences
             ) as T
         }

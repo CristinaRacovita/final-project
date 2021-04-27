@@ -49,7 +49,6 @@ class OptionsViewModel(
     fun logout() {
         sharedPreferences.edit().putBoolean(RegisterViewModel.auth_tag, false).apply()
         sharedPreferences.edit().putString("username", "").apply()
-        sharedPreferences.edit().putString("profile", "").apply()
         sharedPreferences.edit().putInt("id", -1).apply()
 
         navigationLiveData.value = SignInActivity::class.java

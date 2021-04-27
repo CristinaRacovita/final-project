@@ -34,18 +34,6 @@ class UserMediator(private val remoteRepository: UserRepository) {
         return credentials
     }
 
-    fun getUsers(): LiveData<List<UserItem>> {
-        executorService.execute {
-            users.postValue(
-                remoteRepository.getUsers().stream().map(UserBuilder::toItem).collect(
-                    Collectors.toList()
-                )
-            )
-        }
-
-        return users
-    }
-
     fun createNewUser(userItem: UserItem): LiveData<UserItem> {
         executorService.execute {
             user.postValue(
@@ -89,5 +77,21 @@ class UserMediator(private val remoteRepository: UserRepository) {
         }
 
         return details
+    }
+
+    fun checkUser(userItem: UserItem): LiveData<UserItem> {
+        executorService.execute {
+            user.postValue(
+                UserBuilder.toItem(
+                    remoteRepository.checkUser(
+                        UserBuilder.toDTO(
+                            userItem
+                        )
+                    )
+                )
+            )
+        }
+
+        return user
     }
 }

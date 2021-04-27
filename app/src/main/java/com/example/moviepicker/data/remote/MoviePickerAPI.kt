@@ -20,6 +20,9 @@ interface MoviePickerAPI {
     @POST("/credentials")
     fun createNewUser(@Body userDTO: UserDTO): Call<UserDTO>
 
+    @POST("/checkUser")
+    fun checkUser(@Body userDTO: UserDTO): Call<UserDTO>
+
     @GET("/movies")
     fun getMoviesForDisplay(): Call<List<DisplayMovieDTO>>
 

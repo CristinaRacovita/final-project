@@ -11,5 +11,6 @@ interface UserRepository {
     fun uploadPhoto(id: Int, photo: MultipartBody.Part): String
     fun getProfileImage(id: Int): ImageDTO
     fun getUsersDetails(ids: String): List<UserDetailsDTO>
-    fun getUsers(): List<UserDTO>
+    fun checkUser(userDTO: UserDTO): UserDTO
+
 }

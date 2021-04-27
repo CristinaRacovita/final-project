@@ -12,7 +12,6 @@ import com.example.moviepicker.data.remote.UserRemoteDataSource
 import com.example.moviepicker.databinding.ActivityRegisterBinding
 import com.example.moviepicker.domain.mediator.UserMediator
 import com.example.moviepicker.domain.useCase.AddUserUseCase
-import com.example.moviepicker.domain.useCase.FetchCredentialsUseCase
 import com.example.moviepicker.presentation.viewModelFactory.RegisterViewModelFactory
 import com.example.moviepicker.presentation.viewmodel.RegisterViewModel
 
@@ -32,7 +31,6 @@ class RegisterActivity : AppCompatActivity() {
             ViewModelProvider(
                 this,
                 RegisterViewModelFactory(
-                    FetchCredentialsUseCase(mediator),
                     AddUserUseCase(mediator),
                     sharedPreferences
                 )
@@ -46,9 +44,11 @@ class RegisterActivity : AppCompatActivity() {
 
         registerViewModel.status.observe(this, { status ->
             status?.let {
-                registerViewModel.status.value = null
-                Toast.makeText(this, getString(R.string.already_exists), Toast.LENGTH_LONG)
-                    .show()
+                if (status) {
+                    registerViewModel.status.value = null
+                    Toast.makeText(this, getString(R.string.already_exists), Toast.LENGTH_LONG)
+                        .show()
+                }
             }
         })
 
