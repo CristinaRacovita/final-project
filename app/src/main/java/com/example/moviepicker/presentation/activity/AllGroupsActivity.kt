@@ -1,5 +1,6 @@
 package com.example.moviepicker.presentation.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -14,6 +15,10 @@ import com.example.moviepicker.presentation.viewModelFactory.AllGroupsViewModelF
 import com.example.moviepicker.presentation.viewmodel.AllGroupsViewModel
 
 class AllGroupsActivity : AppCompatActivity() {
+    companion object {
+        const val ALL_GROUPS_FLAG = "flag_all_groups"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val sharedPreferences =
@@ -33,6 +38,18 @@ class AllGroupsActivity : AppCompatActivity() {
             DataBindingUtil.setContentView(this, R.layout.activity_all_groups)
 
         binding.viewModel = groupViewModel
-        setContentView(R.layout.activity_all_groups)
+
+        groupViewModel.navigationLiveData.observe(this, { myClass ->
+            myClass?.let {
+                val intent = Intent(this, myClass)
+                intent.putExtra(ALL_GROUPS_FLAG, true)
+                intent.putExtra("groupName", groupViewModel.selectedGroupName.value)
+                intent.putExtra("users", groupViewModel.selectedGroupUsers.value)
+                intent.putExtra(ALL_GROUPS_FLAG, true)
+
+                startActivity(intent)
+                groupViewModel.navigationLiveData.value = null
+            }
+        })
     }
 }

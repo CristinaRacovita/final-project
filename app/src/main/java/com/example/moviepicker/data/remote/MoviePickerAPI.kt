@@ -56,7 +56,7 @@ interface MoviePickerAPI {
     fun addMembers(@Body groupUsers: List<GroupUserDTO>): Call<List<GroupUserDTO>>
 
     @GET("/group/{id}")
-    fun getGroups(@Path("id") id: Int): Call<List<GroupDTO>>
+    fun getGroups(@Path("id") id: Int): Call<List<AllGroupsDTO>>
 
     companion object {
         const val BASE_URL: String = "http://192.168.1.10:8000"

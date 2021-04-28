@@ -11,24 +11,40 @@ import com.example.moviepicker.presentation.activity.MainActivity
 class GroupViewModel(
     val title: String,
     fetchUserDetailsUseCase: FetchUserDetailsUseCase,
-    ids: String
+    flag: Boolean,
+    receivedUsers: List<Any>
 ) :
     ViewModel() {
     var users: ObservableArrayList<UserDetailsItem> = ObservableArrayList()
     var navigationLiveData = MutableLiveData<Class<*>>()
 
     init {
-        val usersLive: LiveData<List<UserDetailsItem>> =
-            fetchUserDetailsUseCase.getUsersDetails(ids)
+        if (flag) {
+            this.users.addAll(
+                receivedUsers as List<UserDetailsItem>
+            )
 
-        usersLive.observeForever { items: List<UserDetailsItem?>? ->
-            if (items != null) {
-                this.users.addAll(
-                    items
-                )
+        } else {
+            var ids = ""
+
+            receivedUsers as List<GroupItemViewModel>
+            for (user in receivedUsers) {
+                ids += user.userId.get().toString() + "-"
             }
 
+            val usersLive: LiveData<List<UserDetailsItem>> =
+                fetchUserDetailsUseCase.getUsersDetails(ids)
+
+            usersLive.observeForever { items: List<UserDetailsItem?>? ->
+                if (items != null) {
+                    this.users.addAll(
+                        items
+                    )
+                }
+
+            }
         }
+
     }
 
     fun getRecommendation() {

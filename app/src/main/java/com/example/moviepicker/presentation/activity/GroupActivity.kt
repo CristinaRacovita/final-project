@@ -9,6 +9,7 @@ import com.example.moviepicker.R
 import com.example.moviepicker.data.remote.MoviePickerAPI
 import com.example.moviepicker.data.remote.UserRemoteDataSource
 import com.example.moviepicker.databinding.ActivityGroupBinding
+import com.example.moviepicker.domain.items.UserDetailsItem
 import com.example.moviepicker.domain.mediator.UserMediator
 import com.example.moviepicker.domain.useCase.FetchUserDetailsUseCase
 import com.example.moviepicker.presentation.viewModelFactory.GroupViewModelFactory
@@ -20,16 +21,16 @@ class GroupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group)
 
-        val users = intent.getSerializableExtra("selectedUsers") as List<GroupItemViewModel>?
-        val groupName = intent.getStringExtra("groupName")
+        val flag = intent.getBooleanExtra(AllGroupsActivity.ALL_GROUPS_FLAG, false)
 
-        var ids = ""
+        val users = if (flag) {
+            intent.getSerializableExtra("users") as List<UserDetailsItem>?
 
-        if (users != null) {
-            for (user in users) {
-                ids += user.userId.get().toString() + "-"
-            }
+        } else {
+            intent.getSerializableExtra("selectedUsers") as List<GroupItemViewModel>?
         }
+
+        val groupName = intent.getStringExtra("groupName")
 
         val remoteDataSource = UserRemoteDataSource(MoviePickerAPI.createAPI())
         val mediator = UserMediator(remoteDataSource)
@@ -40,7 +41,8 @@ class GroupActivity : AppCompatActivity() {
                 GroupViewModelFactory(
                     groupName!!,
                     FetchUserDetailsUseCase(mediator),
-                    ids
+                    flag,
+                    users!!
                 )
             ).get(
                 GroupViewModel::class.java

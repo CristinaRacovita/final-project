@@ -2,8 +2,8 @@ package com.example.moviepicker.domain.items
 
 import java.io.Serializable
 
-data class UserDetailsItem(
+data class AllGroupsItem(
     val id: Int?,
-    val email: String?,
-    val profileImage: String?
+    val name: String,
+    val users: List<UserDetailsItem>,
 ) : Serializable

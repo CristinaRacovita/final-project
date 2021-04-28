@@ -40,7 +40,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="@dimen/margin"
-            android:background="@drawable/profile_image"
+            android:background="@drawable/profile_image_1"
             android:gravity="center"
             android:paddingEnd="@dimen/small_margin"
             android:visibility="invisible"

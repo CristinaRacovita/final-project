@@ -8,11 +8,12 @@ import com.example.moviepicker.presentation.viewmodel.GroupViewModel
 class GroupViewModelFactory(
     val title: String,
     private val fetchUserDetailsUseCase: FetchUserDetailsUseCase,
-    private val ids: String
+    private val flag: Boolean,
+    private val users: List<Any>
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(GroupViewModel::class.java)) {
-            return GroupViewModel(title, fetchUserDetailsUseCase, ids) as T
+            return GroupViewModel(title, fetchUserDetailsUseCase, flag, users) as T
         }
 
         throw IllegalArgumentException("Unable to construct view model")
