@@ -3,11 +3,11 @@ package com.example.moviepicker.domain.workers
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.work.Worker
-import androidx.work.WorkerParameters
+import androidx.work.*
 import com.example.moviepicker.R
 import com.example.moviepicker.domain.notification.NotificationFactory.Companion.sendNotification
 import com.example.moviepicker.presentation.activity.ReviewWatchedMovieActivity
+import java.util.concurrent.TimeUnit
 
 class WatchedWorker(val context: Context, workerParams: WorkerParameters) :
     Worker(context, workerParams) {
@@ -15,6 +15,21 @@ class WatchedWorker(val context: Context, workerParams: WorkerParameters) :
     companion object {
         const val movieId = "myMovieId"
         const val movieTitle = "myMovieTitle"
+
+        fun startWorker(title: String, id: Int, workManager: WorkManager) {
+            val data: Data = workDataOf(
+                movieTitle to title,
+                movieId to id
+            )
+
+            val watchedPeriodicRequest =
+                OneTimeWorkRequest.Builder(WatchedWorker::class.java)
+                    .setInitialDelay(10, TimeUnit.SECONDS)
+                    .setInputData(data)
+                    .build()
+
+            workManager.enqueue(watchedPeriodicRequest)
+        }
     }
 
     private val channelId = "Your_channel_id"

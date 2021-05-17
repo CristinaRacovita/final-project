@@ -12,4 +12,10 @@ class GetRecommendedMovieUseCase(private val mediator: MovieMediator) {
     ): LiveData<List<RecommendedMovieItem>> {
         return mediator.getRecommendedMovie(id, genre, year)
     }
+
+    fun getGroupRecommended(
+        ids: String
+    ): LiveData<List<RecommendedMovieItem>> {
+        return mediator.getRecommendedMovie(ids)
+    }
 }

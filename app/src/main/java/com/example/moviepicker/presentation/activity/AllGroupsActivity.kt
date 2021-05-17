@@ -45,6 +45,7 @@ class AllGroupsActivity : AppCompatActivity() {
                 intent.putExtra(ALL_GROUPS_FLAG, true)
                 intent.putExtra("groupName", groupViewModel.selectedGroupName.value)
                 intent.putExtra("users", groupViewModel.selectedGroupUsers.value)
+                intent.putExtra("groupId", groupViewModel.groupId.value)
                 intent.putExtra(ALL_GROUPS_FLAG, true)
 
                 startActivity(intent)

@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import android.view.View
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableField
+import androidx.databinding.ObservableInt
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -26,6 +27,7 @@ class AlertDialogViewModel(
     var filterText: ObservableField<String> = ObservableField()
     var navigationLiveData = MutableLiveData<Class<*>>()
     var groupName: ObservableField<String> = ObservableField()
+    var groupId: ObservableInt = ObservableInt()
     var selectedUsers: ObservableArrayList<GroupItemViewModel> = ObservableArrayList()
     private val currentUserId = sharedPreferences.getInt("id", -1)
 
@@ -74,11 +76,12 @@ class AlertDialogViewModel(
         val liveGroup = groupUseCase.createGroup(GroupItem(name = groupName.get()!!))
         liveGroup.observeForever { group: GroupItem? ->
             if (group != null) {
+                groupId.set(group.id!!)
                 val groupUsers: MutableList<GroupUserItem> = ArrayList()
                 for (user in selectedUsers) {
-                    groupUsers.add(GroupUserItem(group.id!!, user.userId.get()))
+                    groupUsers.add(GroupUserItem(group.id, user.userId.get()))
                 }
-                groupUsers.add(GroupUserItem(group.id!!, currentUserId))
+                groupUsers.add(GroupUserItem(group.id, currentUserId))
                 groupUseCase.addMembers(groupUsers)
             }
         }

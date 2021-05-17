@@ -19,7 +19,7 @@ class AllGroupsViewModel(
     var navigationLiveData = MutableLiveData<Class<*>>()
     var selectedGroupName = MutableLiveData<String>()
     var selectedGroupUsers = MutableLiveData<ArrayList<UserDetailsItem>>()
-
+    var groupId = MutableLiveData<Int>()
 
     init {
         val currentUserId = sharedPreferences.getInt("id", -1)
@@ -41,6 +41,7 @@ class AllGroupsViewModel(
     override fun goToGroup(allGroupsItem: AllGroupsItem) {
         selectedGroupName.value = allGroupsItem.name
         selectedGroupUsers.value = allGroupsItem.users as ArrayList
+        groupId.value = allGroupsItem.id!!
         navigationLiveData.value = GroupActivity::class.java
     }
 }

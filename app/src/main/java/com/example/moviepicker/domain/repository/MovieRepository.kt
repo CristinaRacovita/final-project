@@ -10,4 +10,7 @@ interface MovieRepository {
     fun getDetailsForPickedMovies(ids: String): List<DetailsMovieDTO>
     fun getRecommendedMovie(id: Int, genre: String?, year: String?): List<RecommendedMovieDTO>
     fun getWatchedMovies(id: Int): List<WatchedMovieDTO>
+    fun getGroupRecommendedMovies(ids: String): List<RecommendedMovieDTO>
+    fun getUnratedMovies(id: Int): List<DisplayMovieDTO>
+    fun getGroupMovies(id: Int): List<DisplayMovieDTO>
 }

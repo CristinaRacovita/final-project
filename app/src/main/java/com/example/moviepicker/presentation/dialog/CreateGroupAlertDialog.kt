@@ -67,6 +67,8 @@ class CreateGroupAlertDialog : DialogFragment() {
                     "selectedUsers", alertDialogViewModel.selectedUsers
                 )
                 intent.putExtra("groupName", alertDialogViewModel.groupName.get())
+                intent.putExtra("groupId", alertDialogViewModel.groupName.get())
+
                 startActivity(intent)
                 alertDialogViewModel.navigationLiveData.value = null
 

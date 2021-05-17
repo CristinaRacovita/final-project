@@ -1,5 +1,6 @@
 package com.example.moviepicker.presentation.viewmodel
 
+import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.MutableLiveData
@@ -21,7 +22,12 @@ class PredictionViewModel(
             if (genreItemPosition.value != 0) genresArray[genreItemPosition.value!!] else null
         val year = if (yearItemPosition.value != 0) yearsArray[yearItemPosition.value!!] else null
 
-        val recommendationDialog: DialogFragment = RecommendationDialog(genre, year)
+        val recommendationDialog: DialogFragment = RecommendationDialog()
+        val args = Bundle()
+        args.putString("genre", genre)
+        args.putString("year", year)
+        args.putInt("type", 1)
+        recommendationDialog.arguments = args
         recommendationDialog.show(fragmentManager, "recommendation")
     }
 

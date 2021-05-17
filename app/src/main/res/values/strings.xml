@@ -56,6 +56,8 @@
     <string name="this_could_take_a_while">This could take a while</string>
     <string name="members">Members:</string>
     <string name="all_your_parties">All your parties</string>
+    <string name="movies_history">Movies History:</string>
+    <string name="no_movies_yet">No movies yet.</string>
     <string-array name="genres">
         <item>Nothing</item>
         <item>Action</item>

@@ -3,9 +3,11 @@ package com.example.moviepicker.domain.mediator
 import androidx.lifecycle.MutableLiveData
 import com.example.moviepicker.domain.builder.AllGroupsBuilder
 import com.example.moviepicker.domain.builder.GroupBuilder
+import com.example.moviepicker.domain.builder.GroupMovieBuilder
 import com.example.moviepicker.domain.builder.GroupUserBuilder
 import com.example.moviepicker.domain.items.AllGroupsItem
 import com.example.moviepicker.domain.items.GroupItem
+import com.example.moviepicker.domain.items.GroupMovieItem
 import com.example.moviepicker.domain.items.GroupUserItem
 import com.example.moviepicker.domain.repository.GroupRepository
 import java.util.concurrent.ExecutorService
@@ -53,5 +55,13 @@ class GroupMediator(private val remoteRepository: GroupRepository) {
         }
 
         return livegroups
+    }
+
+    fun addGroupMovie(groupMovieItem: GroupMovieItem) {
+        executorService.execute {
+            remoteRepository.addGroupMovie(
+                GroupMovieBuilder.toDTO(groupMovieItem)
+            )
+        }
     }
 }

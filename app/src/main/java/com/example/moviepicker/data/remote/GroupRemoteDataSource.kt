@@ -2,6 +2,7 @@ package com.example.moviepicker.data.remote
 
 import com.example.moviepicker.data.dtos.AllGroupsDTO
 import com.example.moviepicker.data.dtos.GroupDTO
+import com.example.moviepicker.data.dtos.GroupMovieDTO
 import com.example.moviepicker.data.dtos.GroupUserDTO
 import com.example.moviepicker.domain.repository.GroupRepository
 
@@ -21,5 +22,9 @@ class GroupRemoteDataSource(private val api: MoviePickerAPI) : GroupRepository {
         }
 
         throw NullPointerException("Expression 'api.getGroups(id).execute().body()' must not be null")
+    }
+
+    override fun addGroupMovie(groupMovie: GroupMovieDTO) {
+        api.addGroupMovie(groupMovie).execute().body()!!
     }
 }

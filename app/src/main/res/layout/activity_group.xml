@@ -36,6 +36,7 @@
             app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/members_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/members_textView"
@@ -57,6 +58,35 @@
             android:textStyle="bold"
             android:onClick="@{() -> viewModel.getRecommendation()}"
             app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/history_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/members_rv"
+            android:layout_margin="@dimen/margin"
+            android:text="@string/movies_history"
+            android:textColor="@color/red_dark"
+            android:textSize="@dimen/title_size"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:textView="@{noMovies}"
+            app:group_movies="@{viewModel.groupMovies}"
+            app:layout_constraintTop_toBottomOf="@id/history_textView" />
+
+        <TextView
+            android:id="@+id/no_movies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/no_movies_yet"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/history_textView"
+            android:textSize="@dimen/text_size"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/button_top_margin" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

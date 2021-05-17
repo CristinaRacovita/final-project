@@ -8,4 +8,8 @@ class FetchDisplayMovieUseCase(private val mediator: MovieMediator) {
     fun getMovies(): LiveData<List<DisplayMovieItem>> {
         return mediator.getMovies()
     }
+
+    fun getGroupMovies(id: Int): LiveData<List<DisplayMovieItem>> {
+        return mediator.getGroupMovies(id)
+    }
 }

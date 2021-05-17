@@ -5,30 +5,38 @@ import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.work.Data
-import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
-import androidx.work.workDataOf
+import com.example.moviepicker.domain.items.GroupMovieItem
+import com.example.moviepicker.domain.items.RatingItem
 import com.example.moviepicker.domain.items.RecommendedMovieItem
+import com.example.moviepicker.domain.useCase.AddRatingsUseCase
 import com.example.moviepicker.domain.useCase.GetRecommendedMovieUseCase
+import com.example.moviepicker.domain.useCase.GroupUseCase
 import com.example.moviepicker.domain.workers.WatchedWorker
 import com.example.moviepicker.presentation.listener.WatchedMovieListener
-import java.util.concurrent.TimeUnit
 
 class RecommendedMovieViewModel(
     val sharedPreferences: SharedPreferences,
     getRecommendedMovieUseCase: GetRecommendedMovieUseCase,
     private val workManager: WorkManager,
     genre: String?,
-    year: String?
+    year: String?,
+    private val type: Int,
+    private val ids: String?,
+    private val groupId: Int,
+    private val addRatingsUseCase: AddRatingsUseCase,
+    private val groupUseCase: GroupUseCase
 ) : ViewModel(), WatchedMovieListener {
     var recommendedMovies: ObservableArrayList<RecommendedMovieItem> = ObservableArrayList()
     var closedLiveData = MutableLiveData<Boolean>()
 
     init {
         val currentUserId = sharedPreferences.getInt("id", -1)
-        val liveRecommendation: LiveData<List<RecommendedMovieItem>> =
+        val liveRecommendation: LiveData<List<RecommendedMovieItem>> = if (type == 1) {
             getRecommendedMovieUseCase.getRecommended(currentUserId, genre, year)
+        } else {
+            getRecommendedMovieUseCase.getGroupRecommended(ids!!)
+        }
 
         liveRecommendation.observeForever { movies: List<RecommendedMovieItem>? ->
             if (movies != null) {
@@ -39,20 +47,26 @@ class RecommendedMovieViewModel(
     }
 
     override fun watchedMovie(recommendedMovieItem: RecommendedMovieItem) {
-        val data: Data = workDataOf(
-            WatchedWorker.movieTitle to recommendedMovieItem.title,
-            WatchedWorker.movieId to recommendedMovieItem.id
-        )
+        if (type == 1) {
+            WatchedWorker.startWorker(
+                recommendedMovieItem.title,
+                recommendedMovieItem.id,
+                workManager
+            )
+        } else {
+            groupUseCase.addGroupMovie(GroupMovieItem(groupId, recommendedMovieItem.id))
+            val ratings: MutableList<RatingItem> = ArrayList()
 
-        val watchedPeriodicRequest =
-            OneTimeWorkRequest.Builder(WatchedWorker::class.java)
-                .setInitialDelay(10, TimeUnit.SECONDS)
-                .setInputData(data)
-                .build()
+            if (ids != null) {
+                for (id in ids.split("-")) {
+                    if (id != "") {
+                        ratings.add(RatingItem(id.toInt(), recommendedMovieItem.id, null))
+                    }
+                }
+            }
 
-        workManager.enqueue(
-            watchedPeriodicRequest
-        )
+            addRatingsUseCase.addRatings(ratings)
+        }
 
         closedLiveData.value = true
     }

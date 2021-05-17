@@ -23,6 +23,12 @@ interface MoviePickerAPI {
     @GET("/movies")
     fun getMoviesForDisplay(): Call<List<DisplayMovieDTO>>
 
+    @GET("/unrated/{id}")
+    fun getUnratedMovies(@Path("id") id: Int): Call<List<DisplayMovieDTO>>
+
+    @GET("/group/movies/{group_id}")
+    fun getGroupMovies(@Path("group_id") id: Int): Call<List<DisplayMovieDTO>>
+
     @GET("/movies/details/{ids}")
     fun getDetailsForMovies(@Path("ids") ids: String): Call<List<DetailsMovieDTO>>
 
@@ -34,6 +40,11 @@ interface MoviePickerAPI {
         @Path("id") id: Int,
         @Query("genre") genre: String,
         @Query("year") year: String
+    ): Call<List<RecommendedMovieDTO>>
+
+    @GET("/group/recommendation/{ids}")
+    fun getGroupRecommendedMovies(
+        @Path("ids") ids: String,
     ): Call<List<RecommendedMovieDTO>>
 
     @GET("/watchedMovies/{id}")
@@ -54,6 +65,9 @@ interface MoviePickerAPI {
 
     @POST("/addMembers")
     fun addMembers(@Body groupUsers: List<GroupUserDTO>): Call<List<GroupUserDTO>>
+
+    @POST("/groupMovies")
+    fun addGroupMovie(@Body groupMovie: GroupMovieDTO): Call<GroupMovieDTO>
 
     @GET("/group/{id}")
     fun getGroups(@Path("id") id: Int): Call<List<AllGroupsDTO>>
