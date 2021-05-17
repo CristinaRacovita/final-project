@@ -70,8 +70,8 @@ class AlertDialogViewModel(
         val users: List<GroupItemViewModel> =
             credentials.stream().filter { user -> user.isChecked.get() }
                 .collect(Collectors.toList())
+
         selectedUsers.addAll(users)
-        navigationLiveData.value = GroupActivity::class.java
 
         val liveGroup = groupUseCase.createGroup(GroupItem(name = groupName.get()!!))
         liveGroup.observeForever { group: GroupItem? ->
@@ -83,6 +83,8 @@ class AlertDialogViewModel(
                 }
                 groupUsers.add(GroupUserItem(group.id, currentUserId))
                 groupUseCase.addMembers(groupUsers)
+
+                navigationLiveData.value = GroupActivity::class.java
             }
         }
     }

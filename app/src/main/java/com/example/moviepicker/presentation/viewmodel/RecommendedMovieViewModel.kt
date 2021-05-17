@@ -22,7 +22,7 @@ class RecommendedMovieViewModel(
     genre: String?,
     year: String?,
     private val type: Int,
-    private val ids: String?,
+    private var ids: String?,
     private val groupId: Int,
     private val addRatingsUseCase: AddRatingsUseCase,
     private val groupUseCase: GroupUseCase
@@ -35,6 +35,10 @@ class RecommendedMovieViewModel(
         val liveRecommendation: LiveData<List<RecommendedMovieItem>> = if (type == 1) {
             getRecommendedMovieUseCase.getRecommended(currentUserId, genre, year)
         } else {
+            if (!ids!!.contains(currentUserId.toString())) {
+                ids += "$currentUserId-"
+            }
+
             getRecommendedMovieUseCase.getGroupRecommended(ids!!)
         }
 
@@ -58,7 +62,7 @@ class RecommendedMovieViewModel(
             val ratings: MutableList<RatingItem> = ArrayList()
 
             if (ids != null) {
-                for (id in ids.split("-")) {
+                for (id in ids!!.split("-")) {
                     if (id != "") {
                         ratings.add(RatingItem(id.toInt(), recommendedMovieItem.id, null))
                     }
