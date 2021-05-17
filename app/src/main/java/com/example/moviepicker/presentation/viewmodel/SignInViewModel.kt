@@ -3,74 +3,102 @@ package com.example.moviepicker.presentation.viewmodel
 import android.content.SharedPreferences
 import android.util.Log
 import android.view.View
-import androidx.databinding.ObservableArrayList
+import android.widget.EditText
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.work.WorkManager
+import com.example.moviepicker.domain.items.DisplayMovieItem
 import com.example.moviepicker.domain.items.UserItem
 import com.example.moviepicker.domain.useCase.FetchCredentialsUseCase
+import com.example.moviepicker.domain.useCase.FetchUnratedMovies
+import com.example.moviepicker.domain.workers.WatchedWorker
 import com.example.moviepicker.presentation.activity.MainActivity
 import com.example.moviepicker.presentation.activity.RegisterActivity
-import java.math.BigInteger
-import java.security.MessageDigest
 
 
 class SignInViewModel(
-    fetchCredentialsUseCase: FetchCredentialsUseCase,
-    private val sharedPreferences: SharedPreferences
+    private val fetchCredentialsUseCase: FetchCredentialsUseCase,
+    private val sharedPreferences: SharedPreferences,
+    private val fetchUnratedMovies: FetchUnratedMovies,
+    private val workManager: WorkManager
 ) : ViewModel() {
     var liveEmail: ObservableField<String> = ObservableField()
     var livePassword: ObservableField<String> = ObservableField()
-    private var credentials: ObservableArrayList<UserItem> = ObservableArrayList()
     var navigationLiveData = MutableLiveData<Class<*>>()
     var status = MutableLiveData<Boolean?>()
     var empty = MutableLiveData<Boolean?>()
     private val tag = "SignInViewModel"
 
-    init {
-        val liveItems: LiveData<List<UserItem>> = fetchCredentialsUseCase.getCredentials()
-
-        liveItems.observeForever { items: List<UserItem?>? ->
-            if (items != null) {
-                this.credentials.addAll(
-                    items
-                )
-            }
-
-        }
-    }
-
-    fun checkCredentials(view: View) {
-        var isOk = false
+    fun checkCredentials(usernameView: View, passwordView: View) {
+        if (validationOfCredential(usernameView, passwordView)) return
 
         if (!livePassword.get().isNullOrEmpty() && !liveEmail.get().isNullOrEmpty()) {
-            for (user: UserItem in credentials) {
-                val md = MessageDigest.getInstance("MD5")
-                val md5Password =
-                    BigInteger(1, md.digest(livePassword.get()!!.toByteArray())).toString(16)
-                        .padStart(32, '0')
-                if (liveEmail.get() == user.email && md5Password == user.password) {
-                    isOk = true
-                    break
+
+            val liveUser = fetchCredentialsUseCase.checkUser(
+                UserItem(
+                    email = liveEmail.get(),
+                    password = RegisterViewModel.convertMD5(livePassword.get()!!)
+                )
+            )
+
+            liveUser.observeForever { user: UserItem? ->
+                if (user != null) {
+                    if (user.email != null) {
+                        setFlags(user.id!!)
+                    } else {
+                        Log.d(tag, "Wrong Credentials")
+                        status.value = true
+                    }
                 }
-            }
-
-            if (isOk) {
-                sharedPreferences.edit().putBoolean(RegisterViewModel.auth_tag, true).apply()
-
-                Log.d(tag, "Right Credentials")
-                navigationLiveData.value = MainActivity::class.java
-            } else {
-                Log.d(tag, "Wrong Credentials")
-                status.value = true
             }
         } else {
             empty.value = true
         }
     }
 
-    fun goRegister(view: View) {
+    private fun setFlags(id: Int) {
+        sharedPreferences.edit().putBoolean(RegisterViewModel.auth_tag, true).apply()
+        sharedPreferences.edit().putString("username", liveEmail.get()).apply()
+        sharedPreferences.edit().putInt("id", id).apply()
+
+        val moviesLive: LiveData<List<DisplayMovieItem>> =
+            fetchUnratedMovies.getUnratedMovies(id)
+
+        moviesLive.observeForever { items: List<DisplayMovieItem>? ->
+            if (items != null && items.isNotEmpty()) {
+                WatchedWorker.startWorker(
+                    items[0].title,
+                    items[0].id,
+                    workManager
+                )
+            }
+        }
+
+        Log.d(tag, "Right Credentials")
+        navigationLiveData.value = MainActivity::class.java
+    }
+
+    private fun validationOfCredential(
+        usernameView: View,
+        passwordView: View
+    ): Boolean {
+        if (liveEmail.get() == null || liveEmail.get()!!.isEmpty()) {
+            usernameView as EditText
+            usernameView.error = "Username Required"
+            return true
+        }
+
+        if (livePassword.get() == null || livePassword.get()!!.isEmpty()) {
+            passwordView as EditText
+            passwordView.error = "Password Required"
+            return true
+        }
+        return false
+    }
+
+    fun goRegister() {
         navigationLiveData.value = RegisterActivity::class.java
     }
 }

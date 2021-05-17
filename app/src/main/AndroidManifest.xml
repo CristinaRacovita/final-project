@@ -3,6 +3,7 @@
     package="com.example.moviepicker">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -11,11 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MoviePicker">
-        <activity android:name=".presentation.activity.GroupActivity"></activity>
+        <activity android:name=".presentation.activity.AllGroupsActivity"></activity>
+        <activity android:name=".presentation.activity.GroupActivity" />
         <activity android:name=".presentation.activity.ReviewWatchedMovieActivity" />
         <activity
             android:name=".presentation.activity.ChooseMoviesActivity"
-            android:theme="@style/Theme.AuthenticateFullscreen"></activity>
+            android:theme="@style/Theme.AuthenticateFullscreen" />
         <activity android:name=".presentation.activity.RateMoviesActivity" />
         <activity
             android:name=".presentation.activity.RegisterActivity"

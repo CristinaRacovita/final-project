@@ -1,5 +1,6 @@
 package com.example.moviepicker.presentation.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +17,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val homeViewModel =
             ViewModelProvider(
                 this,
@@ -27,8 +28,18 @@ class HomeFragment : Fragment() {
         val binding: FragmentHomeBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
+        homeViewModel.navigationLiveData.observe(requireActivity(), { myClass ->
+            myClass?.let {
+                val intent = Intent(requireContext(), myClass)
+                startActivity(intent)
+                homeViewModel.navigationLiveData.value = null
+            }
+        })
+
         binding.homeModel = homeViewModel
 
         return binding.root
     }
+
+
 }

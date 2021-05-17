@@ -1,6 +1,6 @@
 package com.example.moviepicker.domain.builder
 
-import com.example.moviepicker.data.DetailsMovieDTO
+import com.example.moviepicker.data.dtos.DetailsMovieDTO
 import com.example.moviepicker.domain.items.DetailsMovieItem
 
 class DetailsMovieBuilder {

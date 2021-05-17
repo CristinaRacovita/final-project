@@ -2,6 +2,7 @@ package com.example.moviepicker.presentation.binderAdapter
 
 import android.widget.Button
 import android.widget.FrameLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,12 +16,13 @@ import java.util.*
 
 class ChooseMoviesBinderAdapter {
     companion object {
-        @BindingAdapter("movies", "listener")
+        @BindingAdapter("movies", "listener", "progressBar")
         @JvmStatic
         fun setItems(
             recyclerView: RecyclerView,
             items: List<DisplayMovieItemViewModel>?,
-            displayMovieListener: DisplayMovieListener
+            displayMovieListener: DisplayMovieListener,
+            progressBar: ProgressBar
         ) {
             var adapter = recyclerView.adapter
             if (adapter == null && items?.isNotEmpty()!!) {
@@ -33,6 +35,8 @@ class ChooseMoviesBinderAdapter {
             if (items != null && adapter != null) {
                 val myAdapter = adapter as ChooseMoviesAdapter
                 myAdapter.updateItems(items, displayMovieListener)
+
+                GroupMenuBinderAdapter.changeProgressBarVisibility(items, progressBar)
             }
 
         }
@@ -76,7 +80,7 @@ class ChooseMoviesBinderAdapter {
         @JvmStatic
         fun setTitleText(textView: TextView, isWatched: Boolean) {
             val text = if (isWatched) {
-                textView.context.getString(R.string.plase_select_at_least_one_movie)
+                textView.context.getString(R.string.please_select_at_least_one_movie)
             } else {
                 textView.context.getString(R.string.please_select_five_movies_you_already_watched)
             }

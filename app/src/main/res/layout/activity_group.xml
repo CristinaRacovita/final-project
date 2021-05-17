@@ -1,12 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.activity.GroupActivity">
+<layout>
 
-    <TextView
-        android:id="@+id/groupName_textView"
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.moviepicker.presentation.viewmodel.GroupViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent"
+        tools:context=".presentation.activity.GroupActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/red"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@{viewModel.title}"
+            app:titleTextColor="@color/white" />
+
+        <TextView
+            android:id="@+id/members_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin"
+            android:text="@string/members"
+            android:textColor="@color/red_dark"
+            android:textSize="@dimen/title_size"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/members_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/members_textView"
+            app:users="@{viewModel.users}" />
+
+        <Button
+            android:id="@+id/rec_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/top_margin"
+            android:layout_marginEnd="@dimen/margin"
+            android:layout_marginBottom="@dimen/button_top_margin"
+            android:background="@drawable/ic_red_button"
+            android:text="@string/get_recommendation"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold"
+            android:onClick="@{() -> viewModel.getRecommendation()}"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/history_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/members_rv"
+            android:layout_margin="@dimen/margin"
+            android:text="@string/movies_history"
+            android:textColor="@color/red_dark"
+            android:textSize="@dimen/title_size"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:textView="@{noMovies}"
+            app:group_movies="@{viewModel.groupMovies}"
+            app:layout_constraintTop_toBottomOf="@id/history_textView" />
+
+        <TextView
+            android:id="@+id/no_movies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/no_movies_yet"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/history_textView"
+            android:textSize="@dimen/text_size"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/button_top_margin" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

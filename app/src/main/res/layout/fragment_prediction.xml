@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.moviepicker.presentation.viewmodel.PredictionViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/predictionFragment"
+        tools:context=".presentation.fragment.PredictionFragment">
+
+        <TextView
+            android:id="@+id/preference_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin"
+            android:gravity="center"
+            android:text="@string/do_you_have_a_preference"
+            android:textColor="@color/red_dark"
+            android:textSize="@dimen/title_size"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/release_year_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/button_top_margin"
+            android:layout_marginTop="@dimen/button_top_margin"
+            android:gravity="start"
+            android:text="@string/release_year_after"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/preference_textView" />
+
+        <Spinner
+            android:id="@+id/release_year_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin"
+            android:selectedItemPosition="@={viewModel.yearItemPosition}"
+            app:layout_constraintBottom_toBottomOf="@id/release_year_textView"
+            app:layout_constraintStart_toEndOf="@id/release_year_textView"
+            app:layout_constraintTop_toTopOf="@id/release_year_textView"
+            app:array="@{viewModel.yearsArray}" />
+
+        <TextView
+            android:id="@+id/genre_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/button_top_margin"
+            android:layout_marginTop="@dimen/button_top_margin"
+            android:gravity="start"
+            android:text="@string/genre"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/release_year_textView" />
+
+        <Spinner
+            android:id="@+id/genre_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin"
+            android:selectedItemPosition="@={viewModel.genreItemPosition}"
+            app:layout_constraintBottom_toBottomOf="@id/genre_textView"
+            app:layout_constraintStart_toEndOf="@id/genre_textView"
+            app:layout_constraintTop_toTopOf="@id/genre_textView"
+            app:array="@{viewModel.genresArray}" />
+
+
+        <Button
+            android:id="@+id/log_out_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/top_margin"
+            android:layout_marginEnd="@dimen/margin"
+            android:layout_marginBottom="@dimen/button_top_margin"
+            android:background="@drawable/ic_red_button"
+            android:onClick="@{() -> viewModel.getRecommendation()}"
+            android:text="@string/get_recommendation"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

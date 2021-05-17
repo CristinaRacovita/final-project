@@ -45,6 +45,15 @@
             android:textSize="@dimen/text_size"
             app:layout_constraintTop_toBottomOf="@id/title_five_movie_textView" />
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/movies_rv"
             android:layout_width="match_parent"
@@ -52,6 +61,7 @@
             android:layout_marginTop="@dimen/margin"
             app:layout_constraintTop_toBottomOf="@id/movie_title_editView"
             app:listener="@{viewModel::onItemTap}"
+            app:progressBar="@{progressBar}"
             app:movies="@{viewModel.movies}"
             app:allItems="@{viewModel.movies}"
             app:filter="@{viewModel.filterText}"/>

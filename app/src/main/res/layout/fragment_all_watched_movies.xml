@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -25,10 +26,18 @@
             android:textSize="@dimen/title_size"
             android:textStyle="bold" />
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_gravity="center"
+            android:layout_marginTop="200dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            watched_movies="@{viewModel.watchedMovies}"
+            app:progressBarWatched="@{progressBar}"
+            app:watched_movies="@{viewModel.watchedMovies}"
             android:layout_marginTop="@dimen/top_margin" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

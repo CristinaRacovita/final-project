@@ -1,6 +1,6 @@
 package com.example.moviepicker.domain.builder
 
-import com.example.moviepicker.data.RatingDTO
+import com.example.moviepicker.data.dtos.RatingDTO
 import com.example.moviepicker.domain.items.RatingItem
 
 class RatingBuilder {

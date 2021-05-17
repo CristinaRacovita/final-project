@@ -15,7 +15,7 @@
         tools:context=".presentation.activity.RateMoviesActivity">
 
         <TextView
-            android:id="@+id/rate_textView"
+            android:id="@+id/all_groups_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin"
@@ -26,15 +26,25 @@
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/all_groups_textView"
+            app:layout_constraintBottom_toBottomOf="@id/login_button" />
+
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_pickedMovies"
+            android:id="@+id/rv_groups"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/top_margin"
             app:listener="@{viewModel::rateMovie}"
             app:rated_movies="@{viewModel.pickedMovies}"
             android:foregroundGravity="center"
-            app:layout_constraintTop_toBottomOf="@id/rate_textView" />
+            app:progressBarRate="@{progressBar}"
+            app:layout_constraintTop_toBottomOf="@id/all_groups_textView" />
 
         <Button
             android:id="@+id/login_button"
@@ -60,7 +70,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rv_pickedMovies" />
+            app:layout_constraintTop_toBottomOf="@id/rv_groups" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

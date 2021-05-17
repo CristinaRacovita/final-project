@@ -49,10 +49,27 @@ class MovieMediator(private val remoteRepository: MovieRepository) {
         return pickedMovies
     }
 
-    fun getRecommendedMovie(id: Int): MutableLiveData<List<RecommendedMovieItem>> {
+    fun getRecommendedMovie(
+        id: Int,
+        genre: String?,
+        year: String?
+    ): MutableLiveData<List<RecommendedMovieItem>> {
         executorService.execute {
             recommendedMovies.postValue(
-                remoteRepository.getRecommendedMovie(id).stream()
+                remoteRepository.getRecommendedMovie(id, genre, year).stream()
+                    .map(RecommendedMovieBuilder::toItem).collect(Collectors.toList())
+            )
+        }
+
+        return recommendedMovies
+    }
+
+    fun getRecommendedMovie(
+        ids: String
+    ): MutableLiveData<List<RecommendedMovieItem>> {
+        executorService.execute {
+            recommendedMovies.postValue(
+                remoteRepository.getGroupRecommendedMovies(ids).stream()
                     .map(RecommendedMovieBuilder::toItem).collect(Collectors.toList())
             )
         }
@@ -69,5 +86,27 @@ class MovieMediator(private val remoteRepository: MovieRepository) {
         }
 
         return watchedMovies
+    }
+
+    fun getUnratedMovie(id: Int): MutableLiveData<List<DisplayMovieItem>> {
+        executorService.execute {
+            movies.postValue(
+                remoteRepository.getUnratedMovies(id).stream()
+                    .map(DisplayMovieBuilder::toItem).collect(Collectors.toList())
+            )
+        }
+
+        return movies
+    }
+
+    fun getGroupMovies(id: Int): MutableLiveData<List<DisplayMovieItem>> {
+        executorService.execute {
+            movies.postValue(
+                remoteRepository.getGroupMovies(id).stream()
+                    .map(DisplayMovieBuilder::toItem).collect(Collectors.toList())
+            )
+        }
+
+        return movies
     }
 }

@@ -2,7 +2,6 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
     app:startDestination="@id/home_action">
 
     <fragment
@@ -13,19 +12,35 @@
         <action
             android:id="@+id/action_home_action_to_all_movies_button"
             app:destination="@id/all_movies_button" />
+        <action
+            android:id="@+id/action_home_action_to_predictionFragment"
+            app:destination="@id/predictionFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/settings_action"
         android:name="com.example.moviepicker.presentation.fragment.OptionsFragment"
         android:label="fragment_my_recipes"
-        tools:layout="@layout/fragment_options" />
+        tools:layout="@layout/fragment_options">
+        <action
+            android:id="@+id/action_settings_action_self"
+            app:destination="@id/settings_action" />
+    </fragment>
 
     <fragment
         android:id="@+id/all_movies_button"
         android:name="com.example.moviepicker.presentation.fragment.AllWatchedMoviesFragment"
         android:label="all_movies_button"
         tools:layout="@layout/fragment_all_watched_movies" />
+    <fragment
+        android:id="@+id/predictionFragment"
+        android:name="com.example.moviepicker.presentation.fragment.PredictionFragment"
+        android:label="fragment_prediction"
+        tools:layout="@layout/fragment_prediction" />
+    <activity
+        android:id="@+id/groupActivity"
+        android:name="com.example.moviepicker.presentation.activity.GroupActivity"
+        android:label="GroupActivity" />
 
 
 </navigation>

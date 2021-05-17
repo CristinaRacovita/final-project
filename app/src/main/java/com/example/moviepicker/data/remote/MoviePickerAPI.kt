@@ -1,43 +1,80 @@
 package com.example.moviepicker.data.remote
 
-import com.example.moviepicker.data.*
+import com.example.moviepicker.data.dtos.*
+import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 import java.util.concurrent.TimeUnit
 
 interface MoviePickerAPI {
-    @GET("credentials")
-    fun getCredentials(): Call<List<UserDTO>>
+    @GET("/credentials")
+    fun getCredentials(): Call<List<UserDetailsDTO>>
 
-    @POST("credentials")
+    @POST("/credentials")
     fun createNewUser(@Body userDTO: UserDTO): Call<UserDTO>
 
-    @GET("movies")
+    @POST("/checkUser")
+    fun checkUser(@Body userDTO: UserDTO): Call<UserDTO>
+
+    @GET("/movies")
     fun getMoviesForDisplay(): Call<List<DisplayMovieDTO>>
 
-    @GET("movies/details/{ids}")
+    @GET("/unrated/{id}")
+    fun getUnratedMovies(@Path("id") id: Int): Call<List<DisplayMovieDTO>>
+
+    @GET("/group/movies/{group_id}")
+    fun getGroupMovies(@Path("group_id") id: Int): Call<List<DisplayMovieDTO>>
+
+    @GET("/movies/details/{ids}")
     fun getDetailsForMovies(@Path("ids") ids: String): Call<List<DetailsMovieDTO>>
 
-    @POST("rateMovies")
+    @POST("/rateMovies")
     fun rateMovies(@Body ratings: List<RatingDTO>): Call<List<RatingDTO>>
 
-    @GET("prediction/{id}")
-    fun getRecommendedMovie(@Path("id") id: Int): Call<List<RecommendedMovieDTO>>
+    @GET("/prediction/{id}")
+    fun getRecommendedMovie(
+        @Path("id") id: Int,
+        @Query("genre") genre: String,
+        @Query("year") year: String
+    ): Call<List<RecommendedMovieDTO>>
 
-    @GET("watchedMovies/{id}")
+    @GET("/group/recommendation/{ids}")
+    fun getGroupRecommendedMovies(
+        @Path("ids") ids: String,
+    ): Call<List<RecommendedMovieDTO>>
+
+    @GET("/watchedMovies/{id}")
     fun getWatchedMovies(@Path("id") id: Int): Call<List<WatchedMovieDTO>>
 
+    @Multipart
+    @POST("/upload/{id}")
+    fun uploadPhoto(@Path("id") id: Int, @Part file: MultipartBody.Part): Call<String>
+
+    @GET("/image/{id}")
+    fun getProfileImage(@Path("id") id: Int): Call<ImageDTO>
+
+    @GET("/users/{ids}")
+    fun getUsersDetails(@Path("ids") ids: String): Call<List<UserDetailsDTO>>
+
+    @POST("/createGroup")
+    fun createGroup(@Body group: GroupDTO): Call<GroupDTO>
+
+    @POST("/addMembers")
+    fun addMembers(@Body groupUsers: List<GroupUserDTO>): Call<List<GroupUserDTO>>
+
+    @POST("/groupMovies")
+    fun addGroupMovie(@Body groupMovie: GroupMovieDTO): Call<GroupMovieDTO>
+
+    @GET("/group/{id}")
+    fun getGroups(@Path("id") id: Int): Call<List<AllGroupsDTO>>
+
     companion object {
-        private val BASE_URL: String
-            //            get() = "https://film-server-api.herokuapp.com/"
-            get() = "http://192.168.1.10:8000/"
+        const val BASE_URL: String = "http://192.168.1.10:8000"
+        //            get() = "https://film-server-api.herokuapp.com/"
 
         fun createAPI(): MoviePickerAPI {
             val interceptor = HttpLoggingInterceptor()
@@ -45,9 +82,9 @@ interface MoviePickerAPI {
 
             val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(interceptor)
-                .connectTimeout(1, TimeUnit.MINUTES)
-                .writeTimeout(1, TimeUnit.MINUTES)
-                .readTimeout(1, TimeUnit.MINUTES)
+                .connectTimeout(5, TimeUnit.MINUTES)
+                .writeTimeout(5, TimeUnit.MINUTES)
+                .readTimeout(5, TimeUnit.MINUTES)
                 .build()
 
             return Retrofit.Builder()
@@ -58,4 +95,6 @@ interface MoviePickerAPI {
                 .create(MoviePickerAPI::class.java)
         }
     }
+
+
 }

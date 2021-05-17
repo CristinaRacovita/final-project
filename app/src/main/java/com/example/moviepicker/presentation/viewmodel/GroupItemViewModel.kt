@@ -9,5 +9,6 @@ import java.io.Serializable
 class GroupItemViewModel: Serializable {
     var userId = ObservableInt()
     var username = ObservableField<String>()
+    var profileImage = ObservableField<String?>()
     var isChecked = ObservableBoolean()
 }

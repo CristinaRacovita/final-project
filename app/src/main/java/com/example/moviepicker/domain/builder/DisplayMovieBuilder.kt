@@ -1,9 +1,7 @@
 package com.example.moviepicker.domain.builder
 
-import com.example.moviepicker.data.DisplayMovieDTO
-import com.example.moviepicker.data.UserDTO
+import com.example.moviepicker.data.dtos.DisplayMovieDTO
 import com.example.moviepicker.domain.items.DisplayMovieItem
-import com.example.moviepicker.domain.items.UserItem
 
 class DisplayMovieBuilder {
     companion object {
