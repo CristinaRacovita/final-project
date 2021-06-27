@@ -29,6 +29,7 @@ class SplashActivity : AppCompatActivity() {
 
         intent = if (logged && rated) {
             loggedAndRatedUser(sharedPreferences)
+            Intent(this, MainActivity::class.java)
         } else if (logged) {
             Intent(this, ChooseMoviesActivity::class.java)
         } else {
@@ -49,7 +50,7 @@ class SplashActivity : AppCompatActivity() {
         toggleDarkMode(checked)
     }
 
-    private fun loggedAndRatedUser(sharedPreferences: SharedPreferences): Intent {
+    private fun loggedAndRatedUser(sharedPreferences: SharedPreferences) {
         val currentUserId = sharedPreferences.getInt("id", -1)
 
         val movieDataSource = MovieRemoteDataSource(MoviePickerAPI.createAPI())
@@ -63,8 +64,6 @@ class SplashActivity : AppCompatActivity() {
                 startWorker(items[0].title, items[0].id, WorkManager.getInstance(this))
             }
         }
-
-        return Intent(this, MainActivity::class.java)
     }
 
     private fun toggleDarkMode(checked: Boolean) {
