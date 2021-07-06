@@ -11,7 +11,6 @@ class RecommendedMovieBuilder {
                 recommendedMovieItem.title,
                 recommendedMovieItem.imageUrl,
                 recommendedMovieItem.descriptionEn,
-                recommendedMovieItem.descriptionRo
             )
         }
 
@@ -21,7 +20,6 @@ class RecommendedMovieBuilder {
                 recommendedMovieDTO.title,
                 recommendedMovieDTO.imageUrl,
                 recommendedMovieDTO.descriptionEn,
-                recommendedMovieDTO.descriptionRo
             )
         }
     }
